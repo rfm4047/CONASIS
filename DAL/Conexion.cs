@@ -1,101 +1,116 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace CONASIS.DAL
 {
-    class Conexion
+    public class Conexion
     {
-        SqlConnection cn;
-        private string cadenacnx;
+        private readonly SqlConnection cn;
 
+        // 🔹 Constructor: obtiene la cadena desde app.config
         public Conexion()
         {
-
-            string cnString;
-            //Data Source=.;Initial Catalog=asistenciaue1;Integrated Security=True
-            cnString = "Data Source=DESKTOP-A3FQ2FD\\SQLEXPRESS;Initial Catalog=asistenciaue1;Integrated Security=True;MultipleActiveResultSets=True";
-
-
+            string cnString = ConfigurationManager.ConnectionStrings["cnxAsistencia"].ConnectionString;
             cn = new SqlConnection(cnString);
         }
 
-        public Conexion(string cadenacnx)
-        {
-            this.cadenacnx = cadenacnx;
-            cn = new SqlConnection(cadenacnx);  // ← esto faltaba
-        }
-
-
+        // 🔹 Abre conexión
         public void AbrirConexion()
         {
-            try
-            {
-                if (cn.State == ConnectionState.Closed)
-                {
-                    cn.Open();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al establecer conexion con el servidor de la base de datos. " + ex.Message);
-            }
+            if (cn.State == ConnectionState.Closed)
+                cn.Open();
         }
+
+        // 🔹 Cierra conexión
         public void CerrarConexion()
         {
-            try
-            {
-                if (cn.State == ConnectionState.Open)
-                {
-                    cn.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al cerrar la conexion con el servidor de base de datos. " + ex.Message);
-            }
+            if (cn.State == ConnectionState.Open)
+                cn.Close();
         }
+
+        // 🔹 Retorna la conexión (por si necesitas pasarla a otra clase)
         public SqlConnection ObtenerConexion()
         {
             return cn;
         }
-        public DataSet execSQLDataSet(Conexion cn, String sql)
+
+        // 🔹 Ejecuta un procedimiento almacenado que devuelve un DataTable
+        public DataTable EjecutarSP(string nombreSP, List<SqlParameter> parametros = null)
         {
             try
             {
-                DataSet ds = new DataSet();
-                SqlCommand SqlCmd = new SqlCommand(sql, cn.ObtenerConexion());
-                SqlCmd.CommandType = CommandType.Text;
-                SqlDataAdapter sda = new SqlDataAdapter(SqlCmd);
-                sda.Fill(ds);
-                return ds;
+                using (SqlCommand cmd = new SqlCommand(nombreSP, cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    if (parametros != null)
+                        cmd.Parameters.AddRange(parametros.ToArray());
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        AbrirConexion(); // 🔹 abrir antes de usar
+                        da.Fill(dt);
+                        CerrarConexion(); // 🔹 cerrar después
+                        return dt;
+                    }
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception("Error al ejecutar una sentencia SQL no valida");
+                throw new Exception("Error al ejecutar SP: " + ex.Message);
             }
         }
-        public bool execSqlBool(Conexion cn, String sql)
+
+        // 🔹 Ejecuta un procedimiento almacenado que solo inserta/actualiza/elimina (sin devolver datos)
+        public int EjecutarSPNonQuery(string nombreSP, List<SqlParameter> parametros = null)
         {
-            bool resultado = false;
             try
             {
-                DataSet ds = new DataSet();
-                SqlCommand SqlCmd = new SqlCommand(sql, cn.ObtenerConexion());
-                SqlCmd.CommandType = CommandType.Text;
-                SqlCmd.ExecuteNonQuery();
-                resultado = true;
+                using (SqlCommand cmd = new SqlCommand(nombreSP, cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    if (parametros != null)
+                        cmd.Parameters.AddRange(parametros.ToArray());
+
+                    AbrirConexion();
+                    int filas = cmd.ExecuteNonQuery();
+                    CerrarConexion();
+                    return filas; // 🔹 filas afectadas
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception("Error al ejecutar una sentencia SQL no válida.");
+                throw new Exception("Error al ejecutar SP (NonQuery): " + ex.Message);
             }
-            return resultado;
         }
-        
+
+
+        // 🔹 Ejecuta un procedimiento que devuelve un valor escalar (ej. COUNT, MAX, etc.)
+        public object EjecutarSPScalar(string nombreSP, List<SqlParameter> parametros = null)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(nombreSP, cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    if (parametros != null)
+                        cmd.Parameters.AddRange(parametros.ToArray());
+
+                    AbrirConexion();
+                    object result = cmd.ExecuteScalar();
+                    CerrarConexion();
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al ejecutar SP (Scalar): " + ex.Message);
+            }
+        }
+
     }
 }

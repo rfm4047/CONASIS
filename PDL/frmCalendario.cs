@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CONASIS.PDL
 {
-    public partial class frmAgregarDocente : Form
+    public partial class frmCalendarioEsc : Form
     {
-        public frmAgregarDocente()
+        public frmCalendarioEsc()
         {
             InitializeComponent();
         }

@@ -30,24 +30,29 @@
         {
             this.lblReemplazo = new System.Windows.Forms.Label();
             this.panelBotones = new System.Windows.Forms.Panel();
+            this.btnmotivo = new System.Windows.Forms.Button();
+            this.btnReemplazante = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbxReemplazante = new System.Windows.Forms.ComboBox();
             this.gbxSolicitud = new System.Windows.Forms.GroupBox();
-            this.lblFechaSol = new System.Windows.Forms.Label();
-            this.datetimeSol = new System.Windows.Forms.DateTimePicker();
-            this.lclFechaIni = new System.Windows.Forms.Label();
-            this.lblFechaFin = new System.Windows.Forms.Label();
-            this.datetimeini = new System.Windows.Forms.DateTimePicker();
-            this.datetimefin = new System.Windows.Forms.DateTimePicker();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cbxMotivo = new System.Windows.Forms.ComboBox();
             this.lblMotivo = new System.Windows.Forms.Label();
-            this.cbxmotivo = new System.Windows.Forms.ComboBox();
+            this.datetimefin = new System.Windows.Forms.DateTimePicker();
+            this.datetimeini = new System.Windows.Forms.DateTimePicker();
+            this.lblFechaFin = new System.Windows.Forms.Label();
+            this.lclFechaIni = new System.Windows.Forms.Label();
+            this.datetimeSol = new System.Windows.Forms.DateTimePicker();
+            this.lblFechaSol = new System.Windows.Forms.Label();
+            this.dgvReemplazos = new System.Windows.Forms.DataGridView();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbxSolicita = new System.Windows.Forms.ComboBox();
             this.panelBotones.SuspendLayout();
             this.gbxSolicitud.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReemplazos)).BeginInit();
             this.SuspendLayout();
             // 
             // lblReemplazo
@@ -58,7 +63,7 @@
             this.lblReemplazo.AutoSize = true;
             this.lblReemplazo.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReemplazo.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lblReemplazo.Location = new System.Drawing.Point(375, 9);
+            this.lblReemplazo.Location = new System.Drawing.Point(375, 16);
             this.lblReemplazo.Name = "lblReemplazo";
             this.lblReemplazo.Size = new System.Drawing.Size(120, 23);
             this.lblReemplazo.TabIndex = 258;
@@ -67,15 +72,46 @@
             // 
             // panelBotones
             // 
-            this.panelBotones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(199)))), ((int)(((byte)(193)))));
+            this.panelBotones.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.panelBotones.Controls.Add(this.btnmotivo);
+            this.panelBotones.Controls.Add(this.btnReemplazante);
             this.panelBotones.Controls.Add(this.btnEliminar);
             this.panelBotones.Controls.Add(this.btnEditar);
-            this.panelBotones.Controls.Add(this.btnAgregar);
             this.panelBotones.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelBotones.Location = new System.Drawing.Point(785, 0);
             this.panelBotones.Name = "panelBotones";
-            this.panelBotones.Size = new System.Drawing.Size(112, 529);
+            this.panelBotones.Size = new System.Drawing.Size(112, 544);
             this.panelBotones.TabIndex = 275;
+            // 
+            // btnmotivo
+            // 
+            this.btnmotivo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnmotivo.FlatAppearance.BorderSize = 0;
+            this.btnmotivo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnmotivo.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnmotivo.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btnmotivo.Location = new System.Drawing.Point(0, 117);
+            this.btnmotivo.Name = "btnmotivo";
+            this.btnmotivo.Size = new System.Drawing.Size(112, 39);
+            this.btnmotivo.TabIndex = 5;
+            this.btnmotivo.Text = "MOTIVO";
+            this.btnmotivo.UseVisualStyleBackColor = true;
+            this.btnmotivo.Click += new System.EventHandler(this.btnmotivo_Click);
+            // 
+            // btnReemplazante
+            // 
+            this.btnReemplazante.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReemplazante.FlatAppearance.BorderSize = 0;
+            this.btnReemplazante.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReemplazante.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReemplazante.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btnReemplazante.Location = new System.Drawing.Point(0, 78);
+            this.btnReemplazante.Name = "btnReemplazante";
+            this.btnReemplazante.Size = new System.Drawing.Size(112, 39);
+            this.btnReemplazante.TabIndex = 4;
+            this.btnReemplazante.Text = "REEMPLAZANTE";
+            this.btnReemplazante.UseVisualStyleBackColor = true;
+            this.btnReemplazante.Click += new System.EventHandler(this.btnReemplazante_Click);
             // 
             // btnEliminar
             // 
@@ -84,12 +120,13 @@
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnEliminar.Location = new System.Drawing.Point(0, 78);
+            this.btnEliminar.Location = new System.Drawing.Point(0, 39);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(112, 39);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnEditar
             // 
@@ -98,49 +135,36 @@
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnEditar.Location = new System.Drawing.Point(0, 39);
+            this.btnEditar.Location = new System.Drawing.Point(0, 0);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(112, 39);
             this.btnEditar.TabIndex = 2;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAgregar.FlatAppearance.BorderSize = 0;
-            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregar.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnAgregar.Location = new System.Drawing.Point(0, 0);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(112, 39);
-            this.btnAgregar.TabIndex = 1;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblNombre.Location = new System.Drawing.Point(29, 56);
+            this.lblNombre.ForeColor = System.Drawing.Color.Black;
+            this.lblNombre.Location = new System.Drawing.Point(29, 101);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(86, 18);
+            this.lblNombre.Size = new System.Drawing.Size(115, 18);
             this.lblNombre.TabIndex = 276;
-            this.lblNombre.Text = "Nombre(s)";
+            this.lblNombre.Text = "Reemplazante";
             // 
-            // comboBox1
+            // cbxReemplazante
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(132, 54);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(498, 24);
-            this.comboBox1.TabIndex = 277;
+            this.cbxReemplazante.FormattingEnabled = true;
+            this.cbxReemplazante.Location = new System.Drawing.Point(186, 101);
+            this.cbxReemplazante.Name = "cbxReemplazante";
+            this.cbxReemplazante.Size = new System.Drawing.Size(498, 24);
+            this.cbxReemplazante.TabIndex = 277;
             // 
             // gbxSolicitud
             // 
-            this.gbxSolicitud.Controls.Add(this.cbxmotivo);
+            this.gbxSolicitud.Controls.Add(this.cbxMotivo);
             this.gbxSolicitud.Controls.Add(this.lblMotivo);
             this.gbxSolicitud.Controls.Add(this.datetimefin);
             this.gbxSolicitud.Controls.Add(this.datetimeini);
@@ -148,59 +172,31 @@
             this.gbxSolicitud.Controls.Add(this.lclFechaIni);
             this.gbxSolicitud.Controls.Add(this.datetimeSol);
             this.gbxSolicitud.Controls.Add(this.lblFechaSol);
-            this.gbxSolicitud.Location = new System.Drawing.Point(29, 97);
+            this.gbxSolicitud.Location = new System.Drawing.Point(29, 139);
             this.gbxSolicitud.Name = "gbxSolicitud";
-            this.gbxSolicitud.Size = new System.Drawing.Size(731, 153);
+            this.gbxSolicitud.Size = new System.Drawing.Size(727, 137);
             this.gbxSolicitud.TabIndex = 278;
             this.gbxSolicitud.TabStop = false;
             this.gbxSolicitud.Text = "Solicitud";
             // 
-            // lblFechaSol
+            // cbxMotivo
             // 
-            this.lblFechaSol.AutoSize = true;
-            this.lblFechaSol.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaSol.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblFechaSol.Location = new System.Drawing.Point(6, 28);
-            this.lblFechaSol.Name = "lblFechaSol";
-            this.lblFechaSol.Size = new System.Drawing.Size(145, 18);
-            this.lblFechaSol.TabIndex = 259;
-            this.lblFechaSol.Text = "Fecha de Solicitud";
+            this.cbxMotivo.FormattingEnabled = true;
+            this.cbxMotivo.Location = new System.Drawing.Point(157, 95);
+            this.cbxMotivo.Name = "cbxMotivo";
+            this.cbxMotivo.Size = new System.Drawing.Size(498, 24);
+            this.cbxMotivo.TabIndex = 280;
             // 
-            // datetimeSol
+            // lblMotivo
             // 
-            this.datetimeSol.Location = new System.Drawing.Point(157, 28);
-            this.datetimeSol.Name = "datetimeSol";
-            this.datetimeSol.Size = new System.Drawing.Size(162, 21);
-            this.datetimeSol.TabIndex = 260;
-            // 
-            // lclFechaIni
-            // 
-            this.lclFechaIni.AutoSize = true;
-            this.lclFechaIni.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lclFechaIni.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lclFechaIni.Location = new System.Drawing.Point(6, 64);
-            this.lclFechaIni.Name = "lclFechaIni";
-            this.lclFechaIni.Size = new System.Drawing.Size(123, 18);
-            this.lclFechaIni.TabIndex = 261;
-            this.lclFechaIni.Text = "Fecha de Inicio";
-            // 
-            // lblFechaFin
-            // 
-            this.lblFechaFin.AutoSize = true;
-            this.lblFechaFin.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaFin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblFechaFin.Location = new System.Drawing.Point(347, 64);
-            this.lblFechaFin.Name = "lblFechaFin";
-            this.lblFechaFin.Size = new System.Drawing.Size(92, 18);
-            this.lblFechaFin.TabIndex = 262;
-            this.lblFechaFin.Text = "Fecha Final";
-            // 
-            // datetimeini
-            // 
-            this.datetimeini.Location = new System.Drawing.Point(157, 63);
-            this.datetimeini.Name = "datetimeini";
-            this.datetimeini.Size = new System.Drawing.Size(162, 21);
-            this.datetimeini.TabIndex = 263;
+            this.lblMotivo.AutoSize = true;
+            this.lblMotivo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMotivo.ForeColor = System.Drawing.Color.Black;
+            this.lblMotivo.Location = new System.Drawing.Point(6, 101);
+            this.lblMotivo.Name = "lblMotivo";
+            this.lblMotivo.Size = new System.Drawing.Size(58, 18);
+            this.lblMotivo.TabIndex = 265;
+            this.lblMotivo.Text = "Motivo";
             // 
             // datetimefin
             // 
@@ -209,54 +205,130 @@
             this.datetimefin.Size = new System.Drawing.Size(162, 21);
             this.datetimefin.TabIndex = 264;
             // 
-            // dataGridView1
+            // datetimeini
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(29, 284);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(731, 193);
-            this.dataGridView1.TabIndex = 279;
+            this.datetimeini.Location = new System.Drawing.Point(157, 63);
+            this.datetimeini.Name = "datetimeini";
+            this.datetimeini.Size = new System.Drawing.Size(162, 21);
+            this.datetimeini.TabIndex = 263;
             // 
-            // lblMotivo
+            // lblFechaFin
             // 
-            this.lblMotivo.AutoSize = true;
-            this.lblMotivo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMotivo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblMotivo.Location = new System.Drawing.Point(6, 101);
-            this.lblMotivo.Name = "lblMotivo";
-            this.lblMotivo.Size = new System.Drawing.Size(58, 18);
-            this.lblMotivo.TabIndex = 265;
-            this.lblMotivo.Text = "Motivo";
+            this.lblFechaFin.AutoSize = true;
+            this.lblFechaFin.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaFin.ForeColor = System.Drawing.Color.Black;
+            this.lblFechaFin.Location = new System.Drawing.Point(347, 64);
+            this.lblFechaFin.Name = "lblFechaFin";
+            this.lblFechaFin.Size = new System.Drawing.Size(92, 18);
+            this.lblFechaFin.TabIndex = 262;
+            this.lblFechaFin.Text = "Fecha Final";
             // 
-            // cbxmotivo
+            // lclFechaIni
             // 
-            this.cbxmotivo.FormattingEnabled = true;
-            this.cbxmotivo.Location = new System.Drawing.Point(157, 95);
-            this.cbxmotivo.Name = "cbxmotivo";
-            this.cbxmotivo.Size = new System.Drawing.Size(498, 24);
-            this.cbxmotivo.TabIndex = 280;
+            this.lclFechaIni.AutoSize = true;
+            this.lclFechaIni.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lclFechaIni.ForeColor = System.Drawing.Color.Black;
+            this.lclFechaIni.Location = new System.Drawing.Point(6, 64);
+            this.lclFechaIni.Name = "lclFechaIni";
+            this.lclFechaIni.Size = new System.Drawing.Size(123, 18);
+            this.lclFechaIni.TabIndex = 261;
+            this.lclFechaIni.Text = "Fecha de Inicio";
             // 
-            // FrmReemplazante
+            // datetimeSol
+            // 
+            this.datetimeSol.Location = new System.Drawing.Point(157, 28);
+            this.datetimeSol.Name = "datetimeSol";
+            this.datetimeSol.Size = new System.Drawing.Size(162, 21);
+            this.datetimeSol.TabIndex = 260;
+            // 
+            // lblFechaSol
+            // 
+            this.lblFechaSol.AutoSize = true;
+            this.lblFechaSol.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaSol.ForeColor = System.Drawing.Color.Black;
+            this.lblFechaSol.Location = new System.Drawing.Point(6, 28);
+            this.lblFechaSol.Name = "lblFechaSol";
+            this.lblFechaSol.Size = new System.Drawing.Size(145, 18);
+            this.lblFechaSol.TabIndex = 259;
+            this.lblFechaSol.Text = "Fecha de Solicitud";
+            // 
+            // dgvReemplazos
+            // 
+            this.dgvReemplazos.BackgroundColor = System.Drawing.SystemColors.InactiveBorder;
+            this.dgvReemplazos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReemplazos.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgvReemplazos.Location = new System.Drawing.Point(29, 282);
+            this.dgvReemplazos.Name = "dgvReemplazos";
+            this.dgvReemplazos.Size = new System.Drawing.Size(727, 185);
+            this.dgvReemplazos.TabIndex = 279;
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptar.Location = new System.Drawing.Point(164, 490);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(120, 33);
+            this.btnAceptar.TabIndex = 280;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(447, 490);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(120, 33);
+            this.btnCancelar.TabIndex = 281;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(29, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 18);
+            this.label1.TabIndex = 282;
+            this.label1.Text = "Solicita";
+            // 
+            // cbxSolicita
+            // 
+            this.cbxSolicita.FormattingEnabled = true;
+            this.cbxSolicita.Location = new System.Drawing.Point(186, 63);
+            this.cbxSolicita.Name = "cbxSolicita";
+            this.cbxSolicita.Size = new System.Drawing.Size(498, 24);
+            this.cbxSolicita.TabIndex = 283;
+            // 
+            // FrmReemplazo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(897, 529);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(897, 544);
+            this.Controls.Add(this.cbxSolicita);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.dgvReemplazos);
             this.Controls.Add(this.gbxSolicitud);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbxReemplazante);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.panelBotones);
             this.Controls.Add(this.lblReemplazo);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "FrmReemplazante";
+            this.Name = "FrmReemplazo";
             this.Text = "FrmReemplazante";
+            this.Load += new System.EventHandler(this.FrmReemplazo_Load);
             this.panelBotones.ResumeLayout(false);
             this.gbxSolicitud.ResumeLayout(false);
             this.gbxSolicitud.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReemplazos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,9 +340,8 @@
         private System.Windows.Forms.Panel panelBotones;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxReemplazante;
         private System.Windows.Forms.GroupBox gbxSolicitud;
         private System.Windows.Forms.DateTimePicker datetimefin;
         private System.Windows.Forms.DateTimePicker datetimeini;
@@ -278,8 +349,14 @@
         private System.Windows.Forms.Label lclFechaIni;
         private System.Windows.Forms.DateTimePicker datetimeSol;
         private System.Windows.Forms.Label lblFechaSol;
-        private System.Windows.Forms.ComboBox cbxmotivo;
+        private System.Windows.Forms.ComboBox cbxMotivo;
         private System.Windows.Forms.Label lblMotivo;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvReemplazos;
+        private System.Windows.Forms.Button btnReemplazante;
+        private System.Windows.Forms.Button btnmotivo;
+        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbxSolicita;
     }
 }

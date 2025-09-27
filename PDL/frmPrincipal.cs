@@ -166,6 +166,8 @@ namespace CONASIS.PDL
         {
             EsconderSubMenu();
             AbrirFormulario<frmNJuntaEscolar>();
+            
+
         }
 
         private void btncerrarsesion_Click(object sender, EventArgs e)
@@ -181,6 +183,20 @@ namespace CONASIS.PDL
             {
                 EsconderSubMenu();
                 AbrirFormulario<FrmReemplazo >();
+            }
+        }
+
+        private void btnReemplazante_Click(object sender, EventArgs e)
+        {
+            EsconderSubMenu();
+            AbrirFormulario<frmCalendarioEsc>();
+        }
+
+        private void btnRolesUsuarios_Click(object sender, EventArgs e)
+        {
+            {
+                EsconderSubMenu();
+                AbrirFormulario<FrmUsuario>();
             }
         }
 

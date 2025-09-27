@@ -7,92 +7,37 @@ using CONASIS.DAL;
 using System.Data;
 using System.Data.SqlClient;
 
+
 namespace CONASIS.BDL
 {
-    public class BDL_Docente
-    {
-        Conexion cnx = new Conexion();
-        private DAL_Docente doc = new DAL_Docente();
-
-        public DataTable mostrarDocente()
+        public class BDL_Docente
         {
-          DataTable tabla = new DataTable();
-         tabla = doc.Mostrar();
-         return tabla;
+            private readonly DocenteDAL dal = new DocenteDAL();
 
-        }
-
-        public DataTable MostrarDocentes()
-        {
-            DataTable tabla = new DataTable();
-
-            try
+            public DataTable ListarDocentesConPlantel()
             {
-                cnx.AbrirConexion();
-
-                SqlCommand comando = new SqlCommand("PA_MOSTRAR_DOCENTES", cnx.ObtenerConexion());
-                comando.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter da = new SqlDataAdapter(comando);
-                da.Fill(tabla);
+                return dal.GetDocentesConPlantel();
             }
-            catch (Exception ex)
+            public (int IdDocente, string CPlant) AgregarDocente(Docente docente)
             {
-                throw new Exception("Error al mostrar docentes. " + ex.Message);
+                return dal.AGREGAR(docente);
             }
-            finally
+            public int ObtenerSiguienteCodigo()
             {
-                cnx.CerrarConexion();
+                return dal.ObtenerSiguienteCodigo();
             }
 
-            return tabla;
-        }
-    
-
-        public void agregarDocente(int idplantelf, string CargaHDocente, string HrPLanillaDocente)
-        {
-            doc.InsertarDocente(Convert.ToInt32(idplantelf), CargaHDocente, HrPLanillaDocente);
-        }
-
-        public void editarDocente(string CargaHDocente, string HrPLanillaDocente, int idplantelf)
-        {
-            doc.EditarDocente(CargaHDocente, HrPLanillaDocente, Convert.ToInt32(idplantelf));
-        }
-
-        public string ultimocodigoplantel()
-        {
-            return doc.UltimocodigoPlantel();
-        }
-
-        public DataTable obtenerDocenteCompleto(int iddocente)
-        {
-            DataTable tabla = new DataTable();
-
-            try
+            public DocenteFull ObtenerPorId(int idDocente)
             {
-                cnx.AbrirConexion();
-
-                SqlCommand comando = new SqlCommand("PA_OBTENER_DOCENTE_COMPLETO", cnx.ObtenerConexion());
-                comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.AddWithValue("@iddocente", iddocente);
-
-                SqlDataAdapter da = new SqlDataAdapter(comando);
-                da.Fill(tabla);
+                return dal.GetById(idDocente);
             }
-            catch (Exception ex)
+            public List<DocenteFull> BuscarPorNombre(string nombre)
             {
-                throw new Exception("Error al obtener los datos completos del docente. " + ex.Message);
+                return dal.BuscarPorNombre(nombre);
             }
-            finally
-            {
-                cnx.CerrarConexion();
-            }
-
-            return tabla;
-        }
-
 
     }
 
-
 }
+
+

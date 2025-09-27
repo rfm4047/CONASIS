@@ -13,27 +13,19 @@ namespace CONASIS.PDL
 {
     public partial class frmDocente : Form
     {
-        DateTimePicker dt = new DateTimePicker();
 
+        private readonly BDL_Docente bdl;
         public frmDocente()
         {
             InitializeComponent();
-
-            // Suscribirse al evento que se lanza cuando el DataGridView termina de enlazar datos
-            dgvDocente.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvDocente_DataBindingComplete);
+            bdl = new BDL_Docente();
         }
-
-        private void dgvDocente_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            AccionesTabla();
-        }
-
 
         private void AbrirFormularioNieto<MiForm>() where MiForm : Form, new()
         {
             Form formulario;
-            formulario = panelContenido.Controls.OfType<MiForm>().FirstOrDefault();// Busca en la coleccion del formulario
-            //si el formularion/ instancia no existe
+            formulario = panelContenido.Controls.OfType<MiForm>().FirstOrDefault();
+
             if (formulario == null)
             {
                 formulario = new MiForm();
@@ -42,129 +34,114 @@ namespace CONASIS.PDL
                 formulario.Dock = DockStyle.Fill;
                 panelContenido.Controls.Add(formulario);
                 panelContenido.Tag = formulario;
+
+                //  Si es frmNDocente, enganchar el evento
+                if (formulario is frmNDocente frmNuevoDocente)
+                {
+                    frmNuevoDocente.DocenteAgregado += (s, args) =>
+                    {
+                        // Refrescar la grilla
+                        dgvDocente.DataSource = bdl.ListarDocentesConPlantel();
+                    };
+                }
+
                 formulario.Show();
                 formulario.BringToFront();
-                //formulario.FormClosed += new FormClosedEventHandler(FormClosed);
             }
             else
+            {
                 formulario.BringToFront();
+            }
         }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void AbrirFormularioNieto(Form formulario)
         {
-            AbrirFormularioNieto<frmNDocente>();
-        }
+            // Si ya hay un form abierto en el panel, opcionalmente lo cierras:
+            var abierto = panelContenido.Controls.OfType<Form>().FirstOrDefault();
+            if (abierto != null)
+            {
+                abierto.Close();
+                panelContenido.Controls.Remove(abierto);
+            }
 
-        public void mostrarDocente()
-        {
-            BDL_Docente doc = new BDL_Docente();
-            dgvDocente.DataSource = doc.mostrarDocente(); 
+            formulario.TopLevel = false;
+            formulario.FormBorderStyle = FormBorderStyle.None;
+            formulario.Dock = DockStyle.Fill;
+            panelContenido.Controls.Add(formulario);
+            panelContenido.Tag = formulario;
 
-        }
+            // Si es frmNDocente engancha el evento como antes
+            if (formulario is frmNDocente frmNuevoDocente)
+            {
+                frmNuevoDocente.DocenteAgregado += (s, args) =>
+                {
+                    dgvDocente.DataSource = bdl.ListarDocentesConPlantel();
+                };
+            }
 
-        public void AccionesTabla()
-        {
-            // Mostrar el número de fila
-            dgvDocente.RowHeadersVisible = true;
-            
-            dgvDocente.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            // Ocultar ID interno (si existe)
-            if (dgvDocente.Columns.Contains("iddocente"))
-                dgvDocente.Columns["iddocente"].Visible = false;
-
-            // Cambiar encabezados para que se vea más claro al usuario
-            if (dgvDocente.Columns.Contains("nomplantel"))
-                dgvDocente.Columns["nomplantel"].HeaderText = "Nombre";
-                dgvDocente.Columns["nomplantel"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            if (dgvDocente.Columns.Contains("applantel"))
-                dgvDocente.Columns["applantel"].HeaderText = "Apellido Paterno";
-
-            if (dgvDocente.Columns.Contains("amplantel"))
-                dgvDocente.Columns["amplantel"].HeaderText = "Apellido Materno";
-
-            if (dgvDocente.Columns.Contains("itemplantel"))
-                dgvDocente.Columns["itemplantel"].HeaderText = "Item";
-
-            if (dgvDocente.Columns.Contains("rdaplantel"))
-                dgvDocente.Columns["rdaplantel"].HeaderText = "RDA";
-
-            if (dgvDocente.Columns.Contains("cargahorariadocente"))
-                dgvDocente.Columns["cargahorariadocente"].HeaderText = "Carga Horaria";
-
-            if (dgvDocente.Columns.Contains("horaplanilla"))
-                dgvDocente.Columns["horaplanilla"].HeaderText = "Hora Planilla";
-
-            // Limpiar selección
-            dgvDocente.ClearSelection();
+            formulario.Show();
+            formulario.BringToFront();
         }
 
         private void frmDocente_Load(object sender, EventArgs e)
         {
-            mostrarDocente();
-            dgvDocente.Refresh();
-         //   AccionesTabla();
+            dgvDocente.DataSource = bdl.ListarDocentesConPlantel();
+            // Ajusta automáticamente el ancho de cada columna al contenido
+            dgvDocente.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            // CENTRAR ENCABEZADOS DE LA TABLA
+            dgvDocente.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //  CENTRAR SOLO ESTAS DOS COLUMNAS
+            if (dgvDocente.Columns.Contains("iddocente"))
+                dgvDocente.Columns["iddocente"].Visible = false;
+
+            if (dgvDocente.Columns.Contains("horaplanilla"))
+                dgvDocente.Columns["horaplanilla"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            if (dgvDocente.Columns.Contains("cargahorariadocente"))
+                dgvDocente.Columns["cargahorariadocente"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // 4️⃣ Configuración de nombres de encabezados si existen
+            if (dgvDocente.Columns.Contains("cplant"))
+                dgvDocente.Columns["cplant"].HeaderText = "Código Plantel";
+            if (dgvDocente.Columns.Contains("nomplantel"))
+                dgvDocente.Columns["nomplantel"].HeaderText = "Nombre";
+            if (dgvDocente.Columns.Contains("applantel"))
+                dgvDocente.Columns["applantel"].HeaderText = "Apellido Paterno";
+            if (dgvDocente.Columns.Contains("amplantel"))
+                dgvDocente.Columns["amplantel"].HeaderText = "Apellido Materno";
+            if (dgvDocente.Columns.Contains("especialidadplantel"))
+                dgvDocente.Columns["especialidadplantel"].HeaderText = "Especialidad";
+            if (dgvDocente.Columns.Contains("itemplantel"))
+                dgvDocente.Columns["itemplantel"].HeaderText = "Item";
+            if (dgvDocente.Columns.Contains("rdaplantel"))
+                dgvDocente.Columns["rdaplantel"].HeaderText = "RDA";
+            if (dgvDocente.Columns.Contains("horaplanilla"))
+                dgvDocente.Columns["horaplanilla"].HeaderText = "Hora Planilla";
+            if (dgvDocente.Columns.Contains("cargahorariadocente"))
+                dgvDocente.Columns["cargahorariadocente"].HeaderText = "Carga Horaria";
         }
 
-
-
+        
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioNieto<frmNDocente>();
+        }
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (dgvDocente.SelectedRows.Count > 0)
+            if (dgvDocente.CurrentRow == null)
             {
-                int iddocente = Convert.ToInt32(dgvDocente.CurrentRow.Cells["iddocente"].Value);
-
-                BDL_Docente doc = new BDL_Docente();
-                DataTable dtDocente = doc.obtenerDocenteCompleto(iddocente);
-
-                if (dtDocente.Rows.Count > 0)
-                {
-                    DataRow row = dtDocente.Rows[0];
-
-                    frmNDocente frm = new frmNDocente();
-                    frm.Editar = true;
-
-                    // Asignar datos a controles
-                    frm.IdPDoc = row["iddocente"].ToString();
-                    frm.txtNombre.Text = row["nomplantel"].ToString();
-                    frm.txtApPaterno.Text = row["applantel"].ToString();
-                    frm.txtMaterno.Text = row["amplantel"].ToString();
-                    frm.cbxGenero.Text = row["generoplantel"].ToString();
-                    frm.txtCarnet.Text = row["ciplantel"].ToString();
-                    frm.cbxExtension.Text = row["extplantel"].ToString();
-                    frm.txtTelefono.Text = row["telfplantel"].ToString();
-                    frm.dtpFechaNac.Value = Convert.ToDateTime(row["fechanacplantel"]);
-                    frm.txtDireccion.Text = row["direccionplantel"].ToString();
-                    frm.txtEspecialidad.Text = row["especialidadplantel"].ToString();
-                    frm.txtItem.Text = row["itemplantel"].ToString();
-                    frm.txtRda.Text = row["rdaplantel"].ToString();
-                    frm.txtCargaHoraria.Text = row["cargahorariadocente"].ToString();
-                    frm.txtHrPlanilla.Text = row["horaplanilla"].ToString();
-
-                    frm.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo obtener los datos del docente.");
-                }
+                MessageBox.Show("Seleccione un docente para editar.");
+                return;
             }
-            else
+                               
+            int idDocente = Convert.ToInt32(dgvDocente.CurrentRow.Cells["iddocente"].Value);
+            var frm = new frmNDocente(idDocente);
+        
+            frm.DocenteAgregado += (s, args) =>
             {
-                MessageBox.Show("Debe seleccionar una fila.");
-            }
-
+                dgvDocente.DataSource = bdl.ListarDocentesConPlantel(); // refrescar la grilla
+            };
+            AbrirFormularioNieto(frm);
         }
-
-
-
-        private void dt_TextChanged(Object sender, EventArgs e)
-            {
-       
-            dgvDocente.CurrentCell.Value = dt.Text.ToString();
-
-            }
-
         private void dgvDocente_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             // Dibujar el número de fila en la cabecera
@@ -181,5 +158,6 @@ namespace CONASIS.PDL
 
             e.Graphics.DrawString(rowIdx, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
         }
+        
     }
 }

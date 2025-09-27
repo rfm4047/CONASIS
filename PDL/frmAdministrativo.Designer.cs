@@ -30,36 +30,52 @@
         {
             this.panelContenido = new System.Windows.Forms.Panel();
             this.panelBotones = new System.Windows.Forms.Panel();
+            this.btneliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.dvgAdm = new System.Windows.Forms.DataGridView();
+            this.dgvAdm = new System.Windows.Forms.DataGridView();
             this.lblAdministrativo = new System.Windows.Forms.Label();
             this.panelContenido.SuspendLayout();
             this.panelBotones.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgAdm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdm)).BeginInit();
             this.SuspendLayout();
             // 
             // panelContenido
             // 
             this.panelContenido.Controls.Add(this.panelBotones);
-            this.panelContenido.Controls.Add(this.dvgAdm);
+            this.panelContenido.Controls.Add(this.dgvAdm);
             this.panelContenido.Controls.Add(this.lblAdministrativo);
             this.panelContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenido.Location = new System.Drawing.Point(0, 0);
             this.panelContenido.Name = "panelContenido";
-            this.panelContenido.Size = new System.Drawing.Size(881, 491);
+            this.panelContenido.Size = new System.Drawing.Size(897, 529);
             this.panelContenido.TabIndex = 0;
             // 
             // panelBotones
             // 
             this.panelBotones.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.panelBotones.Controls.Add(this.btneliminar);
             this.panelBotones.Controls.Add(this.btnEditar);
             this.panelBotones.Controls.Add(this.btnAgregar);
             this.panelBotones.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelBotones.Location = new System.Drawing.Point(783, 0);
+            this.panelBotones.Location = new System.Drawing.Point(799, 0);
             this.panelBotones.Name = "panelBotones";
-            this.panelBotones.Size = new System.Drawing.Size(98, 491);
+            this.panelBotones.Size = new System.Drawing.Size(98, 529);
             this.panelBotones.TabIndex = 157;
+            // 
+            // btneliminar
+            // 
+            this.btneliminar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btneliminar.FlatAppearance.BorderSize = 0;
+            this.btneliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btneliminar.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btneliminar.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btneliminar.Location = new System.Drawing.Point(0, 78);
+            this.btneliminar.Name = "btneliminar";
+            this.btneliminar.Size = new System.Drawing.Size(98, 39);
+            this.btneliminar.TabIndex = 4;
+            this.btneliminar.Text = "Eliminar";
+            this.btneliminar.UseVisualStyleBackColor = true;
             // 
             // btnEditar
             // 
@@ -74,6 +90,7 @@
             this.btnEditar.TabIndex = 2;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click_1);
             // 
             // btnAgregar
             // 
@@ -90,22 +107,22 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // dvgAdm
+            // dgvAdm
             // 
-            this.dvgAdm.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dvgAdm.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dvgAdm.BackgroundColor = System.Drawing.SystemColors.MenuBar;
-            this.dvgAdm.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dvgAdm.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dvgAdm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dvgAdm.ColumnHeadersVisible = false;
-            this.dvgAdm.Location = new System.Drawing.Point(14, 76);
-            this.dvgAdm.Name = "dvgAdm";
-            this.dvgAdm.ReadOnly = true;
-            this.dvgAdm.RowHeadersVisible = false;
-            this.dvgAdm.Size = new System.Drawing.Size(745, 387);
-            this.dvgAdm.TabIndex = 159;
-            //this.dvgAdm.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgAdm_CellContentClick);
+            this.dgvAdm.AllowUserToOrderColumns = true;
+            this.dgvAdm.AllowUserToResizeColumns = false;
+            this.dgvAdm.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAdm.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvAdm.BackgroundColor = System.Drawing.SystemColors.InactiveBorder;
+            this.dgvAdm.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvAdm.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvAdm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAdm.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgvAdm.Location = new System.Drawing.Point(34, 135);
+            this.dgvAdm.Name = "dgvAdm";
+            this.dgvAdm.ReadOnly = true;
+            this.dgvAdm.Size = new System.Drawing.Size(733, 343);
+            this.dgvAdm.TabIndex = 159;
             // 
             // lblAdministrativo
             // 
@@ -115,7 +132,7 @@
             this.lblAdministrativo.AutoSize = true;
             this.lblAdministrativo.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAdministrativo.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lblAdministrativo.Location = new System.Drawing.Point(309, 32);
+            this.lblAdministrativo.Location = new System.Drawing.Point(323, 25);
             this.lblAdministrativo.Name = "lblAdministrativo";
             this.lblAdministrativo.Size = new System.Drawing.Size(236, 23);
             this.lblAdministrativo.TabIndex = 158;
@@ -127,7 +144,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(881, 491);
+            this.ClientSize = new System.Drawing.Size(897, 529);
             this.Controls.Add(this.panelContenido);
             this.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -138,7 +155,7 @@
             this.panelContenido.ResumeLayout(false);
             this.panelContenido.PerformLayout();
             this.panelBotones.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dvgAdm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdm)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -147,9 +164,10 @@
 
         private System.Windows.Forms.Panel panelContenido;
         private System.Windows.Forms.Panel panelBotones;
-        private System.Windows.Forms.DataGridView dvgAdm;
+        private System.Windows.Forms.DataGridView dgvAdm;
         private System.Windows.Forms.Label lblAdministrativo;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btneliminar;
     }
 }

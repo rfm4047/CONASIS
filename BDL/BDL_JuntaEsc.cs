@@ -9,21 +9,25 @@ using CONASIS.DAL;
 
 namespace CONASIS.BDL
 {
-    public class BDL_JuntaEsc
+    public class JuntaEscolar
     {
-        private DAL_JuntaEsc je = new DAL_JuntaEsc();
 
-        public DataTable mostrarJuntaEscolar()
-        {
-            DataTable tabla = new DataTable();
-            tabla = je.Mostrar();
-            return tabla;
-        }
+        public int CodJe { get; set; }
+        public string Codigo { get; set; }
+        public string NomJe { get; set; }
+        public string ApPaternoJe { get; set; }
+        public string ApMaternoJe { get; set; }
+        public string CiJe { get; set; }
+        public string ExtJe { get; set; }
+        public decimal? TelfJe { get; set; }
+        public string Estado { get; set; }
+        public DateTime FechaCreacion { get; set; }
+        public int CodCargo { get; internal set; }
+        public string NomCargo { get; set; }
 
-        public void agregarJuntaE(int codrepje, string nombrerje, string apprje, string apmrje, string cirje,string extrje, string telfrje, string cargorje)
-        {
-            je.InsertarJuntaEsc(Convert.ToInt32(codrepje), nombrerje, apprje, apmrje, cirje, extrje, telfrje, cargorje);
-        }
+        private readonly DAL_JuntaEsc dal = new DAL_JuntaEsc();
+
+        
 
     }
 }

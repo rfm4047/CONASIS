@@ -40,11 +40,13 @@
             this.lblItem = new System.Windows.Forms.Label();
             this.txtRda = new System.Windows.Forms.TextBox();
             this.gbxDatosPersonales = new System.Windows.Forms.GroupBox();
+            this.cbxEstado = new System.Windows.Forms.ComboBox();
+            this.lblEstado = new System.Windows.Forms.Label();
             this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblFechaNac = new System.Windows.Forms.Label();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.lblTelefono = new System.Windows.Forms.Label();
-            this.txtDierccion = new System.Windows.Forms.TextBox();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
             this.cbxGenero = new System.Windows.Forms.ComboBox();
             this.cbxExtension = new System.Windows.Forms.ComboBox();
             this.txtCarnet = new System.Windows.Forms.TextBox();
@@ -104,6 +106,7 @@
             // 
             // txtCargo
             // 
+            this.txtCargo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCargo.Location = new System.Drawing.Point(516, 79);
             this.txtCargo.Name = "txtCargo";
             this.txtCargo.Size = new System.Drawing.Size(58, 26);
@@ -133,6 +136,7 @@
             // 
             // txtEspecialidad
             // 
+            this.txtEspecialidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEspecialidad.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEspecialidad.Location = new System.Drawing.Point(156, 34);
             this.txtEspecialidad.Name = "txtEspecialidad";
@@ -152,6 +156,7 @@
             // 
             // txtItem
             // 
+            this.txtItem.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtItem.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtItem.Location = new System.Drawing.Point(516, 25);
             this.txtItem.Name = "txtItem";
@@ -171,6 +176,7 @@
             // 
             // txtRda
             // 
+            this.txtRda.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRda.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRda.Location = new System.Drawing.Point(156, 79);
             this.txtRda.Name = "txtRda";
@@ -179,11 +185,13 @@
             // 
             // gbxDatosPersonales
             // 
+            this.gbxDatosPersonales.Controls.Add(this.cbxEstado);
+            this.gbxDatosPersonales.Controls.Add(this.lblEstado);
             this.gbxDatosPersonales.Controls.Add(this.dtpFechaNac);
-            this.gbxDatosPersonales.Controls.Add(this.label1);
+            this.gbxDatosPersonales.Controls.Add(this.lblFechaNac);
             this.gbxDatosPersonales.Controls.Add(this.txtTelefono);
             this.gbxDatosPersonales.Controls.Add(this.lblTelefono);
-            this.gbxDatosPersonales.Controls.Add(this.txtDierccion);
+            this.gbxDatosPersonales.Controls.Add(this.txtDireccion);
             this.gbxDatosPersonales.Controls.Add(this.cbxGenero);
             this.gbxDatosPersonales.Controls.Add(this.cbxExtension);
             this.gbxDatosPersonales.Controls.Add(this.txtCarnet);
@@ -206,6 +214,29 @@
             this.gbxDatosPersonales.TabStop = false;
             this.gbxDatosPersonales.Text = "Datos Personales";
             // 
+            // cbxEstado
+            // 
+            this.cbxEstado.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxEstado.FormattingEnabled = true;
+            this.cbxEstado.Items.AddRange(new object[] {
+            "ACTIVO",
+            "INACTIVO"});
+            this.cbxEstado.Location = new System.Drawing.Point(156, 218);
+            this.cbxEstado.Name = "cbxEstado";
+            this.cbxEstado.Size = new System.Drawing.Size(121, 28);
+            this.cbxEstado.TabIndex = 227;
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.AutoSize = true;
+            this.lblEstado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.lblEstado.Location = new System.Drawing.Point(6, 222);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(59, 19);
+            this.lblEstado.TabIndex = 226;
+            this.lblEstado.Text = "Estado";
+            // 
             // dtpFechaNac
             // 
             this.dtpFechaNac.Location = new System.Drawing.Point(516, 175);
@@ -213,16 +244,16 @@
             this.dtpFechaNac.Size = new System.Drawing.Size(200, 26);
             this.dtpFechaNac.TabIndex = 225;
             // 
-            // label1
+            // lblFechaNac
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(332, 180);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(178, 19);
-            this.label1.TabIndex = 224;
-            this.label1.Text = "Fecha de Nacimiento";
+            this.lblFechaNac.AutoSize = true;
+            this.lblFechaNac.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaNac.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.lblFechaNac.Location = new System.Drawing.Point(332, 180);
+            this.lblFechaNac.Name = "lblFechaNac";
+            this.lblFechaNac.Size = new System.Drawing.Size(178, 19);
+            this.lblFechaNac.TabIndex = 224;
+            this.lblFechaNac.Text = "Fecha de Nacimiento";
             // 
             // txtTelefono
             // 
@@ -243,13 +274,14 @@
             this.lblTelefono.TabIndex = 220;
             this.lblTelefono.Text = "Telefono";
             // 
-            // txtDierccion
+            // txtDireccion
             // 
-            this.txtDierccion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDierccion.Location = new System.Drawing.Point(155, 215);
-            this.txtDierccion.Name = "txtDierccion";
-            this.txtDierccion.Size = new System.Drawing.Size(391, 26);
-            this.txtDierccion.TabIndex = 213;
+            this.txtDireccion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDireccion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDireccion.Location = new System.Drawing.Point(516, 215);
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(200, 26);
+            this.txtDireccion.TabIndex = 213;
             // 
             // cbxGenero
             // 
@@ -292,6 +324,7 @@
             // 
             // txtMaterno
             // 
+            this.txtMaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaterno.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaterno.Location = new System.Drawing.Point(515, 82);
             this.txtMaterno.Name = "txtMaterno";
@@ -300,6 +333,7 @@
             // 
             // txtApPaterno
             // 
+            this.txtApPaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtApPaterno.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtApPaterno.Location = new System.Drawing.Point(156, 86);
             this.txtApPaterno.Name = "txtApPaterno";
@@ -308,6 +342,7 @@
             // 
             // txtNombre
             // 
+            this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombre.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.Location = new System.Drawing.Point(515, 41);
             this.txtNombre.Name = "txtNombre";
@@ -327,7 +362,7 @@
             this.lblDireccion.AutoSize = true;
             this.lblDireccion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblDireccion.Location = new System.Drawing.Point(6, 218);
+            this.lblDireccion.Location = new System.Drawing.Point(335, 218);
             this.lblDireccion.Name = "lblDireccion";
             this.lblDireccion.Size = new System.Drawing.Size(83, 19);
             this.lblDireccion.TabIndex = 205;
@@ -430,6 +465,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmNAdministrativo";
             this.Text = "frmNAdministrativo";
+            this.Load += new System.EventHandler(this.frmNAdministrativo_Load);
             this.gbxDatosLaborales.ResumeLayout(false);
             this.gbxDatosLaborales.PerformLayout();
             this.gbxDatosPersonales.ResumeLayout(false);
@@ -458,13 +494,13 @@
         private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblDocente;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblFechaNac;
         public System.Windows.Forms.TextBox txtCargo;
         public System.Windows.Forms.TextBox txtEspecialidad;
         public System.Windows.Forms.TextBox txtItem;
         public System.Windows.Forms.TextBox txtRda;
         public System.Windows.Forms.TextBox txtTelefono;
-        public System.Windows.Forms.TextBox txtDierccion;
+        public System.Windows.Forms.TextBox txtDireccion;
         public System.Windows.Forms.ComboBox cbxGenero;
         public System.Windows.Forms.ComboBox cbxExtension;
         public System.Windows.Forms.TextBox txtCarnet;
@@ -473,5 +509,7 @@
         public System.Windows.Forms.TextBox txtNombre;
         public System.Windows.Forms.TextBox txtCodigo;
         public System.Windows.Forms.DateTimePicker dtpFechaNac;
+        private System.Windows.Forms.Label lblEstado;
+        public System.Windows.Forms.ComboBox cbxEstado;
     }
 }

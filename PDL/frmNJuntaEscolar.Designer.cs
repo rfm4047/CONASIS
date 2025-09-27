@@ -28,12 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelBasico = new System.Windows.Forms.Panel();
+            this.cbxEstado = new System.Windows.Forms.ComboBox();
+            this.lblEstado = new System.Windows.Forms.Label();
+            this.lblCodigo = new System.Windows.Forms.Label();
             this.txtcodrepje = new System.Windows.Forms.TextBox();
             this.panelBotones = new System.Windows.Forms.Panel();
+            this.btnCargo = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
             this.dvgJuntaEscolar = new System.Windows.Forms.DataGridView();
             this.cbxCargo = new System.Windows.Forms.ComboBox();
             this.lblCargo = new System.Windows.Forms.Label();
@@ -58,6 +64,9 @@
             // 
             // panelBasico
             // 
+            this.panelBasico.Controls.Add(this.cbxEstado);
+            this.panelBasico.Controls.Add(this.lblEstado);
+            this.panelBasico.Controls.Add(this.lblCodigo);
             this.panelBasico.Controls.Add(this.txtcodrepje);
             this.panelBasico.Controls.Add(this.panelBotones);
             this.panelBasico.Controls.Add(this.dvgJuntaEscolar);
@@ -81,28 +90,73 @@
             this.panelBasico.Name = "panelBasico";
             this.panelBasico.Size = new System.Drawing.Size(894, 563);
             this.panelBasico.TabIndex = 0;
-            this.panelBasico.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBasico_Paint);
+        //    this.panelBasico.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBasico_Paint);
+            // 
+            // cbxEstado
+            // 
+            this.cbxEstado.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxEstado.FormattingEnabled = true;
+            this.cbxEstado.Location = new System.Drawing.Point(195, 213);
+            this.cbxEstado.Name = "cbxEstado";
+            this.cbxEstado.Size = new System.Drawing.Size(163, 28);
+            this.cbxEstado.TabIndex = 278;
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.AutoSize = true;
+            this.lblEstado.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstado.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblEstado.Location = new System.Drawing.Point(30, 219);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(56, 18);
+            this.lblEstado.TabIndex = 277;
+            this.lblEstado.Text = "Estado";
+            // 
+            // lblCodigo
+            // 
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblCodigo.Location = new System.Drawing.Point(28, 91);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(64, 18);
+            this.lblCodigo.TabIndex = 276;
+            this.lblCodigo.Text = "Código";
             // 
             // txtcodrepje
             // 
-            this.txtcodrepje.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcodrepje.Location = new System.Drawing.Point(193, 29);
+            this.txtcodrepje.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtcodrepje.Location = new System.Drawing.Point(195, 86);
             this.txtcodrepje.Name = "txtcodrepje";
-            this.txtcodrepje.Size = new System.Drawing.Size(100, 23);
+            this.txtcodrepje.Size = new System.Drawing.Size(100, 26);
             this.txtcodrepje.TabIndex = 275;
-            this.txtcodrepje.Visible = false;
             // 
             // panelBotones
             // 
-            this.panelBotones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(199)))), ((int)(((byte)(193)))));
+            this.panelBotones.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.panelBotones.Controls.Add(this.btnCargo);
             this.panelBotones.Controls.Add(this.btnEliminar);
             this.panelBotones.Controls.Add(this.btnEditar);
-            this.panelBotones.Controls.Add(this.btnAgregar);
             this.panelBotones.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelBotones.Location = new System.Drawing.Point(796, 0);
             this.panelBotones.Name = "panelBotones";
             this.panelBotones.Size = new System.Drawing.Size(98, 563);
             this.panelBotones.TabIndex = 274;
+            // 
+            // btnCargo
+            // 
+            this.btnCargo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCargo.FlatAppearance.BorderSize = 0;
+            this.btnCargo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCargo.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btnCargo.Location = new System.Drawing.Point(0, 78);
+            this.btnCargo.Name = "btnCargo";
+            this.btnCargo.Size = new System.Drawing.Size(98, 39);
+            this.btnCargo.TabIndex = 4;
+            this.btnCargo.Text = "CARGO";
+            this.btnCargo.UseVisualStyleBackColor = true;
+            this.btnCargo.Click += new System.EventHandler(this.btnCargo_Click);
             // 
             // btnEliminar
             // 
@@ -111,12 +165,13 @@
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnEliminar.Location = new System.Drawing.Point(0, 78);
+            this.btnEliminar.Location = new System.Drawing.Point(0, 39);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(98, 39);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnEditar
             // 
@@ -125,55 +180,63 @@
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnEditar.Location = new System.Drawing.Point(0, 39);
+            this.btnEditar.Location = new System.Drawing.Point(0, 0);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(98, 39);
             this.btnEditar.TabIndex = 2;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAgregar.FlatAppearance.BorderSize = 0;
-            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregar.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnAgregar.Location = new System.Drawing.Point(0, 0);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(98, 39);
-            this.btnAgregar.TabIndex = 1;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // dvgJuntaEscolar
             // 
+            this.dvgJuntaEscolar.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dvgJuntaEscolar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dvgJuntaEscolar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dvgJuntaEscolar.Location = new System.Drawing.Point(29, 260);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dvgJuntaEscolar.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dvgJuntaEscolar.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.dvgJuntaEscolar.Location = new System.Drawing.Point(29, 285);
             this.dvgJuntaEscolar.Name = "dvgJuntaEscolar";
-            this.dvgJuntaEscolar.Size = new System.Drawing.Size(743, 225);
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dvgJuntaEscolar.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dvgJuntaEscolar.Size = new System.Drawing.Size(743, 200);
             this.dvgJuntaEscolar.TabIndex = 273;
             // 
             // cbxCargo
             // 
-            this.cbxCargo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxCargo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxCargo.FormattingEnabled = true;
-            this.cbxCargo.Items.AddRange(new object[] {
-            "Presidente",
-            "Vicepresidente",
-            "Tesorero(a)"});
-            this.cbxCargo.Location = new System.Drawing.Point(609, 181);
+            this.cbxCargo.Location = new System.Drawing.Point(577, 212);
             this.cbxCargo.Name = "cbxCargo";
-            this.cbxCargo.Size = new System.Drawing.Size(163, 25);
+            this.cbxCargo.Size = new System.Drawing.Size(163, 28);
             this.cbxCargo.TabIndex = 272;
             // 
             // lblCargo
             // 
             this.lblCargo.AutoSize = true;
             this.lblCargo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCargo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblCargo.Location = new System.Drawing.Point(460, 186);
+            this.lblCargo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblCargo.Location = new System.Drawing.Point(410, 219);
             this.lblCargo.Name = "lblCargo";
             this.lblCargo.Size = new System.Drawing.Size(55, 18);
             this.lblCargo.TabIndex = 271;
@@ -181,18 +244,18 @@
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefono.Location = new System.Drawing.Point(193, 181);
+            this.txtTelefono.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefono.Location = new System.Drawing.Point(577, 168);
             this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(163, 23);
+            this.txtTelefono.Size = new System.Drawing.Size(163, 26);
             this.txtTelefono.TabIndex = 268;
             // 
             // lblTelefono
             // 
             this.lblTelefono.AutoSize = true;
             this.lblTelefono.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblTelefono.Location = new System.Drawing.Point(26, 186);
+            this.lblTelefono.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblTelefono.Location = new System.Drawing.Point(410, 175);
             this.lblTelefono.Name = "lblTelefono";
             this.lblTelefono.Size = new System.Drawing.Size(71, 18);
             this.lblTelefono.TabIndex = 267;
@@ -200,7 +263,7 @@
             // 
             // cbxExtension
             // 
-            this.cbxExtension.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxExtension.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxExtension.FormattingEnabled = true;
             this.cbxExtension.Items.AddRange(new object[] {
             "LP",
@@ -212,49 +275,53 @@
             "PN",
             "BN",
             "SCZ"});
-            this.cbxExtension.Location = new System.Drawing.Point(715, 119);
+            this.cbxExtension.Location = new System.Drawing.Point(301, 169);
             this.cbxExtension.Name = "cbxExtension";
-            this.cbxExtension.Size = new System.Drawing.Size(57, 24);
+            this.cbxExtension.Size = new System.Drawing.Size(57, 28);
             this.cbxExtension.TabIndex = 266;
             // 
             // txtCarnet
             // 
-            this.txtCarnet.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCarnet.Location = new System.Drawing.Point(609, 119);
+            this.txtCarnet.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCarnet.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCarnet.Location = new System.Drawing.Point(195, 169);
             this.txtCarnet.Name = "txtCarnet";
-            this.txtCarnet.Size = new System.Drawing.Size(100, 23);
+            this.txtCarnet.Size = new System.Drawing.Size(100, 26);
             this.txtCarnet.TabIndex = 265;
             // 
             // txtApMaterno
             // 
+            this.txtApMaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtApMaterno.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApMaterno.Location = new System.Drawing.Point(193, 126);
+            this.txtApMaterno.Location = new System.Drawing.Point(577, 125);
             this.txtApMaterno.Name = "txtApMaterno";
             this.txtApMaterno.Size = new System.Drawing.Size(163, 23);
             this.txtApMaterno.TabIndex = 264;
             // 
             // txtApPaterno
             // 
-            this.txtApPaterno.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApPaterno.Location = new System.Drawing.Point(609, 69);
+            this.txtApPaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtApPaterno.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApPaterno.Location = new System.Drawing.Point(195, 125);
             this.txtApPaterno.Name = "txtApPaterno";
-            this.txtApPaterno.Size = new System.Drawing.Size(163, 23);
+            this.txtApPaterno.Size = new System.Drawing.Size(163, 26);
             this.txtApPaterno.TabIndex = 263;
             // 
             // txtNombre
             // 
-            this.txtNombre.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(193, 75);
+            this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNombre.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Location = new System.Drawing.Point(577, 86);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(236, 23);
+            this.txtNombre.Size = new System.Drawing.Size(163, 26);
             this.txtNombre.TabIndex = 262;
             // 
             // lblCarnet
             // 
             this.lblCarnet.AutoSize = true;
             this.lblCarnet.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCarnet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblCarnet.Location = new System.Drawing.Point(461, 124);
+            this.lblCarnet.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblCarnet.Location = new System.Drawing.Point(28, 175);
             this.lblCarnet.Name = "lblCarnet";
             this.lblCarnet.Size = new System.Drawing.Size(58, 18);
             this.lblCarnet.TabIndex = 261;
@@ -264,8 +331,8 @@
             // 
             this.lblMaterno.AutoSize = true;
             this.lblMaterno.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaterno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblMaterno.Location = new System.Drawing.Point(26, 131);
+            this.lblMaterno.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblMaterno.Location = new System.Drawing.Point(410, 130);
             this.lblMaterno.Name = "lblMaterno";
             this.lblMaterno.Size = new System.Drawing.Size(137, 18);
             this.lblMaterno.TabIndex = 260;
@@ -275,8 +342,8 @@
             // 
             this.lblApPaterno.AutoSize = true;
             this.lblApPaterno.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApPaterno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblApPaterno.Location = new System.Drawing.Point(461, 73);
+            this.lblApPaterno.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblApPaterno.Location = new System.Drawing.Point(28, 130);
             this.lblApPaterno.Name = "lblApPaterno";
             this.lblApPaterno.Size = new System.Drawing.Size(131, 18);
             this.lblApPaterno.TabIndex = 259;
@@ -286,8 +353,8 @@
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblNombre.Location = new System.Drawing.Point(26, 76);
+            this.lblNombre.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblNombre.Location = new System.Drawing.Point(410, 91);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(86, 18);
             this.lblNombre.TabIndex = 258;
@@ -310,7 +377,8 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(476, 504);
+            this.btnCancelar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(429, 503);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(127, 31);
             this.btnCancelar.TabIndex = 256;
@@ -319,7 +387,8 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(244, 504);
+            this.btnAceptar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptar.Location = new System.Drawing.Point(197, 503);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(127, 31);
             this.btnAceptar.TabIndex = 255;
@@ -368,8 +437,11 @@
         private System.Windows.Forms.DataGridView dvgJuntaEscolar;
         private System.Windows.Forms.Panel panelBotones;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.TextBox txtcodrepje;
+        private System.Windows.Forms.Label lblCodigo;
+        private System.Windows.Forms.Button btnCargo;
+        private System.Windows.Forms.ComboBox cbxEstado;
+        private System.Windows.Forms.Label lblEstado;
     }
 }

@@ -1,35 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using CONASIS.DAL;
 
 namespace CONASIS.BDL
 {
-    public class BDL_Plantel
+    public class Plantel
     {
-        private DAL_Plantel pla = new DAL_Plantel();
-
-        public void agregarplantel(string NombrePlantel, string ApPaternoPlantel, string ApMaternoPlantel, string GeneroPlantel,
-            string CiPlantel, string ExtensionPlantel, string TelfPlantel, string FechaNacPlantel, string DireccionPlantel,
-            string EspecialidadPlantel, string ItemPlantel, string RdaPlantel)
-        {
-            pla.AgregarPlantel(NombrePlantel, ApPaternoPlantel, ApMaternoPlantel, GeneroPlantel, CiPlantel, ExtensionPlantel,
-                       TelfPlantel, Convert.ToDateTime(FechaNacPlantel), DireccionPlantel, EspecialidadPlantel, ItemPlantel,
-                       RdaPlantel);
-        }
-
-        public void editarplantel(string NombrePlantel, string ApPaternoPlantel, string ApMaternoPlantel, string GeneroPlantel,
-            string CiPlantel, string ExtensionPlantel, string TelfPlantel, string FechaNacPlantel, string DireccionPlantel,
-            string EspecialidadPlantel, string ItemPlantel, string RdaPlantel, string CodPlantel)
-        {
-            pla.editarPlantel(NombrePlantel, ApPaternoPlantel, ApMaternoPlantel, GeneroPlantel, CiPlantel, ExtensionPlantel,
-                       TelfPlantel, Convert.ToDateTime(FechaNacPlantel), DireccionPlantel, EspecialidadPlantel, ItemPlantel,
-                       RdaPlantel, Convert.ToInt32(CodPlantel));
-        }
+        public int CodPlantel { get; set; }
+        public string CPlant { get; set; }
+        public string NomPlantel { get; set; }         
+        public string ApPlantel { get; set; }          
+        public string AmPlantel { get; set; }          
+        public string GeneroPlantel { get; set; }      
+        public string CIPlantel { get; set; }       
+        public string ExtPlantel { get; set; }       
+        public string TelfPlantel { get; set; }
+        public DateTime FechaNacPlantel { get; set; }
+        public string DireccionPlantel { get; set; }
+        public string EspecialidadPlantel { get; set; }
+        public string ItemPlantel { get; set; }
+        public string RdaPlantel { get; set; }
+        public string EstadoPlantel { get; set; }
+        public int? IdPlantel_Reemplaza { get; set; }
 
     }
 }

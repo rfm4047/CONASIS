@@ -43,6 +43,8 @@
             this.lblItem = new System.Windows.Forms.Label();
             this.txtRda = new System.Windows.Forms.TextBox();
             this.gbxDatosPersonales = new System.Windows.Forms.GroupBox();
+            this.cbxEstado = new System.Windows.Forms.ComboBox();
+            this.txtEstado = new System.Windows.Forms.Label();
             this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTelefono = new System.Windows.Forms.TextBox();
@@ -173,6 +175,7 @@
             // 
             // txtEspecialidad
             // 
+            this.txtEspecialidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEspecialidad.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEspecialidad.Location = new System.Drawing.Point(156, 34);
             this.txtEspecialidad.Name = "txtEspecialidad";
@@ -192,6 +195,7 @@
             // 
             // txtItem
             // 
+            this.txtItem.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtItem.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtItem.Location = new System.Drawing.Point(370, 34);
             this.txtItem.Name = "txtItem";
@@ -211,6 +215,7 @@
             // 
             // txtRda
             // 
+            this.txtRda.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRda.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRda.Location = new System.Drawing.Point(571, 33);
             this.txtRda.Name = "txtRda";
@@ -219,6 +224,8 @@
             // 
             // gbxDatosPersonales
             // 
+            this.gbxDatosPersonales.Controls.Add(this.cbxEstado);
+            this.gbxDatosPersonales.Controls.Add(this.txtEstado);
             this.gbxDatosPersonales.Controls.Add(this.dtpFechaNac);
             this.gbxDatosPersonales.Controls.Add(this.label1);
             this.gbxDatosPersonales.Controls.Add(this.txtTelefono);
@@ -245,6 +252,29 @@
             this.gbxDatosPersonales.TabIndex = 228;
             this.gbxDatosPersonales.TabStop = false;
             this.gbxDatosPersonales.Text = "Datos Personales";
+            // 
+            // cbxEstado
+            // 
+            this.cbxEstado.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxEstado.FormattingEnabled = true;
+            this.cbxEstado.Items.AddRange(new object[] {
+            "ACTIVO",
+            "INACTIVO"});
+            this.cbxEstado.Location = new System.Drawing.Point(156, 220);
+            this.cbxEstado.Name = "cbxEstado";
+            this.cbxEstado.Size = new System.Drawing.Size(163, 28);
+            this.cbxEstado.TabIndex = 225;
+            // 
+            // txtEstado
+            // 
+            this.txtEstado.AutoSize = true;
+            this.txtEstado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.txtEstado.Location = new System.Drawing.Point(6, 224);
+            this.txtEstado.Name = "txtEstado";
+            this.txtEstado.Size = new System.Drawing.Size(59, 19);
+            this.txtEstado.TabIndex = 224;
+            this.txtEstado.Text = "Estado";
             // 
             // dtpFechaNac
             // 
@@ -285,10 +315,11 @@
             // 
             // txtDireccion
             // 
+            this.txtDireccion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDireccion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDireccion.Location = new System.Drawing.Point(156, 216);
+            this.txtDireccion.Location = new System.Drawing.Point(519, 220);
             this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(390, 26);
+            this.txtDireccion.Size = new System.Drawing.Size(235, 26);
             this.txtDireccion.TabIndex = 213;
             // 
             // cbxGenero
@@ -296,8 +327,8 @@
             this.cbxGenero.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxGenero.FormattingEnabled = true;
             this.cbxGenero.Items.AddRange(new object[] {
-            "FEMENINO",
-            "MASCULINO"});
+            "MASCULINO",
+            "FEMENINO"});
             this.cbxGenero.Location = new System.Drawing.Point(156, 130);
             this.cbxGenero.Name = "cbxGenero";
             this.cbxGenero.Size = new System.Drawing.Size(121, 28);
@@ -314,7 +345,7 @@
             "CBBA",
             "CH",
             "TJ",
-            "PN",
+            "PA",
             "BN",
             "SCZ"});
             this.cbxExtension.Location = new System.Drawing.Point(624, 136);
@@ -332,6 +363,7 @@
             // 
             // txtMaterno
             // 
+            this.txtMaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaterno.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaterno.Location = new System.Drawing.Point(518, 86);
             this.txtMaterno.Name = "txtMaterno";
@@ -340,6 +372,7 @@
             // 
             // txtApPaterno
             // 
+            this.txtApPaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtApPaterno.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtApPaterno.Location = new System.Drawing.Point(156, 86);
             this.txtApPaterno.Name = "txtApPaterno";
@@ -348,6 +381,7 @@
             // 
             // txtNombre
             // 
+            this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombre.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.Location = new System.Drawing.Point(518, 45);
             this.txtNombre.Name = "txtNombre";
@@ -356,6 +390,8 @@
             // 
             // txtCodigo
             // 
+            this.txtCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCodigo.Enabled = false;
             this.txtCodigo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodigo.Location = new System.Drawing.Point(156, 45);
             this.txtCodigo.Name = "txtCodigo";
@@ -367,7 +403,7 @@
             this.lblDireccion.AutoSize = true;
             this.lblDireccion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblDireccion.Location = new System.Drawing.Point(9, 220);
+            this.lblDireccion.Location = new System.Drawing.Point(338, 224);
             this.lblDireccion.Name = "lblDireccion";
             this.lblDireccion.Size = new System.Drawing.Size(83, 19);
             this.lblDireccion.TabIndex = 205;
@@ -511,5 +547,7 @@
         public System.Windows.Forms.TextBox txtCargaHoraria;
         public System.Windows.Forms.DateTimePicker dtpFechaNac;
         public System.Windows.Forms.Panel panelContenido;
+        public System.Windows.Forms.ComboBox cbxEstado;
+        private System.Windows.Forms.Label txtEstado;
     }
 }

@@ -9,31 +9,35 @@ using CONASIS.DAL;
 
 namespace CONASIS.BDL
 {
-    public class BDL_Administrativo
-    {
-        private DAL_Administrativo adm = new DAL_Administrativo();
-
-        public DataTable mostrarAdministrativo()
+    
+        public class BDL_Administrativo
         {
-            DataTable tabla = new DataTable();
-            tabla = adm.Mostrar();
-            return tabla;
-        }
+            private readonly AdministrativoDAL dal = new AdministrativoDAL();
 
-        public void agregarAdministrativo(int idplantelf, string cargoadmi)
-        {
-            adm.AgregarAdministrativo(Convert.ToInt32(idplantelf), cargoadmi);
-        }
+            public DataTable ListarAdministrativoConPlantel()
+            {
+                return dal.GetAdministrativosConPlantel();
+            }
+             public (int idAdm, string CPlant) AgregarAdministrativo(Administrativo administrativo)
+             {
+                return dal.AGREGAR(administrativo);
+             }
+             public int ObtenerSiguienteCodigo()
+             {
+                return dal.ObtenerSiguienteCodigo();
+             }
+            public AdministrativoFull ObtenerPorId( int idAdministrativo)
+            {
+                return dal.GetById(idAdministrativo);
+            }
+            public DataTable BuscarPorNombre(string nombre)
+            {
+                return dal.BuscarPorNombre(nombre);
+            }
 
-        public void editarAdministrativo(string Cargoadm, int idplantelf)
-        {
-            adm.EditarAdministrativo(Cargoadm, Convert.ToInt32(idplantelf));
-        }
-
-        public string ultimocodigoplantel()
-        {
-            return adm.UltimocodigoPlantel();
-        }
+       
 
     }
 }
+   
+

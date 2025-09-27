@@ -1,75 +1,182 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 using CONASIS.BDL;
 
 namespace CONASIS.DAL
 {
     public class DAL_Plantel
     {
-        private Conexion cnx = new Conexion();
-        DataTable table = new DataTable();
-        SqlCommand cmd = new SqlCommand();
+        private readonly string connectionString;
+        private readonly Conexion conexion;
 
-        public void AgregarPlantel(string NombrePlantel, string ApPaternoPlantel, string ApMaternoPlantel, string GeneroPlantel,
-            string CiPlantel, string ExtensionPlantel, string TelfPlantel, DateTime FechaNacPlantel, string DireccionPlantel,
-            string EspecialidadPlantel, string ItemPlantel, string RdaPlantel)
-
+        public DAL_Plantel(string connectionString)
         {
-            cmd.Connection = cnx.ObtenerConexion();
-            cnx.AbrirConexion();
-            cmd.CommandText = "PA_GuardarPlantel";
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@nomplantel", NombrePlantel);
-            cmd.Parameters.AddWithValue("@applantel", ApPaternoPlantel);
-            cmd.Parameters.AddWithValue("@amplantel", ApMaternoPlantel);
-            cmd.Parameters.AddWithValue("@generoplantel", GeneroPlantel);
-            cmd.Parameters.AddWithValue("@ciplantel", CiPlantel);
-            cmd.Parameters.AddWithValue("@extplantel", ExtensionPlantel);
-            cmd.Parameters.AddWithValue("@telfplantel", TelfPlantel);
-            cmd.Parameters.AddWithValue("@fechanacplantel", FechaNacPlantel);
-            cmd.Parameters.AddWithValue("@direccionplantel", DireccionPlantel);
-            cmd.Parameters.AddWithValue("@especialidadplantel", EspecialidadPlantel);
-            cmd.Parameters.AddWithValue("@itemplantel", ItemPlantel);
-            cmd.Parameters.AddWithValue("@rdaplantel", RdaPlantel);
-           
-            cmd.ExecuteNonQuery();
-            cnx.CerrarConexion();
-            cmd.Parameters.Clear();
+            this.connectionString = connectionString;
+            
+        }
+        public DAL_Plantel()
+        {
+            conexion = new Conexion();
+        }
+        // CREATE
+        public int AGREGAR(Plantel plantel)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand("sp_Plantel_CRUD", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Accion", "AGREGAR");
+                cmd.Parameters.AddWithValue("@nomplantel", plantel.NomPlantel);
+                cmd.Parameters.AddWithValue("@applantel", plantel.ApPlantel);
+                cmd.Parameters.AddWithValue("@amplantel", plantel.AmPlantel);
+                cmd.Parameters.AddWithValue("@generoplantel", plantel.GeneroPlantel);
+                cmd.Parameters.AddWithValue("@ciplantel", plantel.CIPlantel);
+                cmd.Parameters.AddWithValue("@extplantel", plantel.ExtPlantel);
+                cmd.Parameters.AddWithValue("@telfplantel", plantel.TelfPlantel);
+                cmd.Parameters.AddWithValue("@fechanacplantel", plantel.FechaNacPlantel);
+                cmd.Parameters.AddWithValue("@direccionplantel", plantel.DireccionPlantel);
+                cmd.Parameters.AddWithValue("@especialidadplantel", plantel.EspecialidadPlantel);
+                cmd.Parameters.AddWithValue("@itemplantel", plantel.ItemPlantel);
+                cmd.Parameters.AddWithValue("@rdaplantel", plantel.RdaPlantel);
+                cmd.Parameters.AddWithValue("@estadoplantel", plantel.EstadoPlantel);
+
+                conn.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar()); // Devuelve ID insertado
+            }
         }
 
-        public void editarPlantel(string NombrePlantel, string ApPaternoPlantel, string ApMaternoPlantel, string GeneroPlantel,
-            string CiPlantel, string ExtensionPlantel, string TelfPlantel, DateTime FechaNacPlantel, string DireccionPlantel,
-            string EspecialidadPlantel, string ItemPlantel, string RdaPlantel, int CodPlantel)
-
+        // UPDATE
+        public void MODIFICAR(Plantel plantel)
         {
-            cmd.Connection = cnx.ObtenerConexion();
-            cnx.AbrirConexion();
-            cmd.CommandText = "PA_ModificarPlantel";
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@nomplantel", NombrePlantel);
-            cmd.Parameters.AddWithValue("@applantel", ApPaternoPlantel);
-            cmd.Parameters.AddWithValue("@amplantel", ApMaternoPlantel);
-            cmd.Parameters.AddWithValue("@generoplantel", GeneroPlantel);
-            cmd.Parameters.AddWithValue("@ciplantel", CiPlantel);
-            cmd.Parameters.AddWithValue("@extplantel", ExtensionPlantel);
-            cmd.Parameters.AddWithValue("@telfplantel", TelfPlantel);
-            cmd.Parameters.AddWithValue("@fechanacplantel", FechaNacPlantel);
-            cmd.Parameters.AddWithValue("@direccionplantel", DireccionPlantel);
-            cmd.Parameters.AddWithValue("@especialidadplantel", EspecialidadPlantel);
-            cmd.Parameters.AddWithValue("@itemplantel", ItemPlantel);
-            cmd.Parameters.AddWithValue("@rdaplantel", RdaPlantel);
-            cmd.Parameters.AddWithValue("@codplantel", CodPlantel);
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand("sp_Plantel_CRUD", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.ExecuteNonQuery();
-            cnx.CerrarConexion();
-            cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Accion", "MODIFICAR");
+                cmd.Parameters.AddWithValue("@codplantel", plantel.CodPlantel);
+                cmd.Parameters.AddWithValue("@nomplantel", plantel.NomPlantel);
+                cmd.Parameters.AddWithValue("@applantel", plantel.ApPlantel);
+                cmd.Parameters.AddWithValue("@amplantel", plantel.AmPlantel);
+                cmd.Parameters.AddWithValue("@generoplantel", plantel.GeneroPlantel);
+                cmd.Parameters.AddWithValue("@ciplantel", plantel.CIPlantel);
+                cmd.Parameters.AddWithValue("@extplantel", plantel.ExtPlantel);
+                cmd.Parameters.AddWithValue("@telfplantel", plantel.TelfPlantel);
+                cmd.Parameters.AddWithValue("@fechanacplantel", plantel.FechaNacPlantel);
+                cmd.Parameters.AddWithValue("@direccionplantel", plantel.DireccionPlantel);
+                cmd.Parameters.AddWithValue("@especialidadplantel", plantel.EspecialidadPlantel);
+                cmd.Parameters.AddWithValue("@itemplantel", plantel.ItemPlantel);
+                cmd.Parameters.AddWithValue("@rdaplantel", plantel.RdaPlantel);
+                cmd.Parameters.AddWithValue("@estadoplantel", plantel.EstadoPlantel);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        // DELETE
+        public void ELIMINAR(int codPlantel)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand("sp_Plantel_CRUD", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Accion", "ELIMINAR");
+                cmd.Parameters.AddWithValue("@codplantel", codPlantel);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        // READ ALL
+        public List<Plantel> GetAll()
+        {
+            var list = new List<Plantel>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand("sp_Plantel_CRUD", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Accion", "MOSTRAR");
+
+                conn.Open();
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        list.Add(new Plantel
+                        {
+                            CodPlantel = Convert.ToInt32(dr["codplantel"]),
+                            NomPlantel = dr["nomplantel"].ToString(),
+                            ApPlantel = dr["applantel"].ToString(),
+                            AmPlantel = dr["amplantel"].ToString(),
+                            GeneroPlantel = dr["generoplantel"].ToString(),
+                            CIPlantel = dr["ciplantel"].ToString(),
+                            ExtPlantel = dr["extplantel"].ToString(),
+                            TelfPlantel = dr["telfplantel"].ToString(),
+                            FechaNacPlantel = Convert.ToDateTime(dr["fechanacplantel"]),
+                            DireccionPlantel = dr["direccionplantel"].ToString(),
+                            EspecialidadPlantel = dr["especialidadplantel"].ToString(),
+                            ItemPlantel = dr["itemplantel"].ToString(),
+                            RdaPlantel = dr["rdaplantel"].ToString(),
+                            EstadoPlantel = dr["estadoplantel"].ToString()
+                        });
+                    }
+                }
+            }
+            return list;
+        }
+
+        // READ ONE
+        public Plantel GetById(int codPlantel)
+        {
+            Plantel plantel = null;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand("sp_Plantel_CRUD", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Accion", "BUSCAR");
+                cmd.Parameters.AddWithValue("@codplantel", codPlantel);
+
+                conn.Open();
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        plantel = new Plantel
+                        {
+                            CodPlantel = Convert.ToInt32(dr["codplantel"]),
+                            NomPlantel = dr["nomplantel"].ToString(),
+                            ApPlantel = dr["applantel"].ToString(),
+                            AmPlantel = dr["amplantel"].ToString(),
+                            GeneroPlantel = dr["generoplantel"].ToString(),
+                            CIPlantel = dr["ciplantel"].ToString(),
+                            ExtPlantel = dr["extplantel"].ToString(),
+                            TelfPlantel = dr["telfplantel"].ToString(),
+                            FechaNacPlantel = Convert.ToDateTime(dr["fechanacplantel"]),
+                            DireccionPlantel = dr["direccionplantel"].ToString(),
+                            EspecialidadPlantel = dr["especialidadplantel"].ToString(),
+                            ItemPlantel = dr["itemplantel"].ToString(),
+                            RdaPlantel = dr["rdaplantel"].ToString(),
+                            EstadoPlantel = dr["estadoplantel"].ToString()
+                        };
+                    }
+                }
+            }
+            return plantel;
+        }
+
+        public DataTable ListarPlanteles()
+        {
+            return conexion.EjecutarSP("sp_ListarPlanteles");
+        }
 
     }
 }
+
+

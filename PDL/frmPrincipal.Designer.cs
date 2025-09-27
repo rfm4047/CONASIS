@@ -33,6 +33,8 @@
             this.panelContenido = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelInfo = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnReemplazante = new System.Windows.Forms.Button();
             this.btncerrarsesion = new System.Windows.Forms.Button();
@@ -41,7 +43,7 @@
             this.btnReportes = new System.Windows.Forms.Button();
             this.btnReemplazos = new System.Windows.Forms.Button();
             this.btnJuntaEsc = new System.Windows.Forms.Button();
-            this.btnAsistencia = new System.Windows.Forms.Button();
+            this.btnRolesUsuarios = new System.Windows.Forms.Button();
             this.btnHorario = new System.Windows.Forms.Button();
             this.panelPersonal = new System.Windows.Forms.Panel();
             this.btnAdministrativo = new System.Windows.Forms.Button();
@@ -51,6 +53,7 @@
             this.panelLogo = new System.Windows.Forms.Panel();
             this.imagenlogo = new System.Windows.Forms.PictureBox();
             this.panelTitulo = new System.Windows.Forms.Panel();
+            this.lblNombre = new System.Windows.Forms.Label();
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.btnRestaurar = new System.Windows.Forms.PictureBox();
             this.btnMinimizar = new System.Windows.Forms.PictureBox();
@@ -58,6 +61,7 @@
             this.panelBasico.SuspendLayout();
             this.panelContenido.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelInfo.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelPersonal.SuspendLayout();
             this.panelLogo.SuspendLayout();
@@ -95,6 +99,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
@@ -106,11 +111,35 @@
             // panelInfo
             // 
             this.panelInfo.BackColor = System.Drawing.Color.DimGray;
+            this.panelInfo.Controls.Add(this.label2);
+            this.panelInfo.Controls.Add(this.label1);
             this.panelInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelInfo.Location = new System.Drawing.Point(206, 593);
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Size = new System.Drawing.Size(894, 53);
             this.panelInfo.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(6, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(237, 18);
+            this.label2.TabIndex = 261;
+            this.label2.Text = "Fecha: 17/09/2025 Hrs: 08:00 am";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(6, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(118, 18);
+            this.label1.TabIndex = 260;
+            this.label1.Text = "Usuario: Admin";
             // 
             // panelMenu
             // 
@@ -122,7 +151,7 @@
             this.panelMenu.Controls.Add(this.btnReportes);
             this.panelMenu.Controls.Add(this.btnReemplazos);
             this.panelMenu.Controls.Add(this.btnJuntaEsc);
-            this.panelMenu.Controls.Add(this.btnAsistencia);
+            this.panelMenu.Controls.Add(this.btnRolesUsuarios);
             this.panelMenu.Controls.Add(this.btnHorario);
             this.panelMenu.Controls.Add(this.panelPersonal);
             this.panelMenu.Controls.Add(this.btnPersonal);
@@ -143,14 +172,15 @@
             this.btnReemplazante.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReemplazante.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnReemplazante.Image = global::CONASIS.Properties.Resources.Calendario;
-            this.btnReemplazante.Location = new System.Drawing.Point(0, 408);
+            this.btnReemplazante.Location = new System.Drawing.Point(0, 362);
             this.btnReemplazante.Name = "btnReemplazante";
             this.btnReemplazante.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.btnReemplazante.Size = new System.Drawing.Size(206, 46);
             this.btnReemplazante.TabIndex = 15;
-            this.btnReemplazante.Text = "   Reemplazante";
+            this.btnReemplazante.Text = "   Calendario Escolar";
             this.btnReemplazante.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReemplazante.UseVisualStyleBackColor = false;
+            this.btnReemplazante.Click += new System.EventHandler(this.btnReemplazante_Click);
             // 
             // btncerrarsesion
             // 
@@ -224,8 +254,8 @@
             this.btnReemplazos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReemplazos.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReemplazos.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnReemplazos.Image = global::CONASIS.Properties.Resources.Calendario;
-            this.btnReemplazos.Location = new System.Drawing.Point(0, 362);
+            this.btnReemplazos.Image = global::CONASIS.Properties.Resources.red;
+            this.btnReemplazos.Location = new System.Drawing.Point(0, 316);
             this.btnReemplazos.Name = "btnReemplazos";
             this.btnReemplazos.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.btnReemplazos.Size = new System.Drawing.Size(206, 46);
@@ -244,7 +274,7 @@
             this.btnJuntaEsc.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnJuntaEsc.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnJuntaEsc.Image = global::CONASIS.Properties.Resources.JuntaEscolar;
-            this.btnJuntaEsc.Location = new System.Drawing.Point(0, 316);
+            this.btnJuntaEsc.Location = new System.Drawing.Point(0, 270);
             this.btnJuntaEsc.Name = "btnJuntaEsc";
             this.btnJuntaEsc.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.btnJuntaEsc.Size = new System.Drawing.Size(206, 46);
@@ -254,23 +284,23 @@
             this.btnJuntaEsc.UseVisualStyleBackColor = false;
             this.btnJuntaEsc.Click += new System.EventHandler(this.btnJuntaEsc_Click);
             // 
-            // btnAsistencia
+            // btnRolesUsuarios
             // 
-            this.btnAsistencia.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.btnAsistencia.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAsistencia.FlatAppearance.BorderSize = 0;
-            this.btnAsistencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAsistencia.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAsistencia.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAsistencia.Image = global::CONASIS.Properties.Resources.Asistencia;
-            this.btnAsistencia.Location = new System.Drawing.Point(0, 270);
-            this.btnAsistencia.Name = "btnAsistencia";
-            this.btnAsistencia.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.btnAsistencia.Size = new System.Drawing.Size(206, 46);
-            this.btnAsistencia.TabIndex = 8;
-            this.btnAsistencia.Text = "   Asistencia";
-            this.btnAsistencia.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAsistencia.UseVisualStyleBackColor = false;
+            this.btnRolesUsuarios.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.btnRolesUsuarios.FlatAppearance.BorderSize = 0;
+            this.btnRolesUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRolesUsuarios.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRolesUsuarios.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnRolesUsuarios.Image = global::CONASIS.Properties.Resources.modelo_a_seguirb__3_;
+            this.btnRolesUsuarios.Location = new System.Drawing.Point(0, 407);
+            this.btnRolesUsuarios.Name = "btnRolesUsuarios";
+            this.btnRolesUsuarios.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.btnRolesUsuarios.Size = new System.Drawing.Size(206, 46);
+            this.btnRolesUsuarios.TabIndex = 8;
+            this.btnRolesUsuarios.Text = "   Roles Usuarios";
+            this.btnRolesUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRolesUsuarios.UseVisualStyleBackColor = false;
+            this.btnRolesUsuarios.Click += new System.EventHandler(this.btnRolesUsuarios_Click);
             // 
             // btnHorario
             // 
@@ -354,6 +384,7 @@
             this.btnPersonal.Size = new System.Drawing.Size(206, 46);
             this.btnPersonal.TabIndex = 5;
             this.btnPersonal.Text = "   Plantel";
+            this.btnPersonal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPersonal.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPersonal.UseVisualStyleBackColor = false;
             this.btnPersonal.Click += new System.EventHandler(this.btnPersonal_Click_1);
@@ -390,16 +421,19 @@
             // imagenlogo
             // 
             this.imagenlogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("imagenlogo.BackgroundImage")));
+            this.imagenlogo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imagenlogo.Image = global::CONASIS.Properties.Resources.MENU2;
             this.imagenlogo.Location = new System.Drawing.Point(0, 0);
             this.imagenlogo.Name = "imagenlogo";
-            this.imagenlogo.Size = new System.Drawing.Size(206, 108);
-            this.imagenlogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.imagenlogo.Size = new System.Drawing.Size(206, 54);
+            this.imagenlogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imagenlogo.TabIndex = 0;
             this.imagenlogo.TabStop = false;
             // 
             // panelTitulo
             // 
-            this.panelTitulo.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.panelTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.panelTitulo.Controls.Add(this.lblNombre);
             this.panelTitulo.Controls.Add(this.btnMaximizar);
             this.panelTitulo.Controls.Add(this.btnRestaurar);
             this.panelTitulo.Controls.Add(this.btnMinimizar);
@@ -410,6 +444,17 @@
             this.panelTitulo.Size = new System.Drawing.Size(1100, 30);
             this.panelTitulo.TabIndex = 0;
             this.panelTitulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitulo_MouseMove);
+            // 
+            // lblNombre
+            // 
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblNombre.Location = new System.Drawing.Point(10, 6);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(275, 18);
+            this.lblNombre.TabIndex = 259;
+            this.lblNombre.Text = "SISTEMA DE CONTROL DE ASISTENCIA";
             // 
             // btnMaximizar
             // 
@@ -472,11 +517,14 @@
             this.panelBasico.ResumeLayout(false);
             this.panelContenido.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelInfo.ResumeLayout(false);
+            this.panelInfo.PerformLayout();
             this.panelMenu.ResumeLayout(false);
             this.panelPersonal.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imagenlogo)).EndInit();
             this.panelTitulo.ResumeLayout(false);
+            this.panelTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).EndInit();
@@ -504,7 +552,7 @@
         private System.Windows.Forms.Button btnDocente;
         private System.Windows.Forms.Button btnHorario;
         private System.Windows.Forms.PictureBox imagenlogo;
-        private System.Windows.Forms.Button btnAsistencia;
+        private System.Windows.Forms.Button btnRolesUsuarios;
         private System.Windows.Forms.Button btnJuntaEsc;
         private System.Windows.Forms.Button btnReemplazos;
         private System.Windows.Forms.Button btnForm101;
@@ -513,5 +561,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btncerrarsesion;
         private System.Windows.Forms.Button btnReemplazante;
+        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

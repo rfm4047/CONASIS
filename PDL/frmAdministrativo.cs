@@ -9,20 +9,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CONASIS.BDL;
 
+
 namespace CONASIS.PDL
 {
     public partial class frmAdministrativo : Form
     {
+        private readonly BDL_Administrativo bdl;
+
         public frmAdministrativo()
         {
             InitializeComponent();
+            bdl = new BDL_Administrativo();
         }
 
         private void AbrirFormularioNieto<MiForm>() where MiForm : Form, new()
         {
             Form formulario;
-            formulario = panelContenido.Controls.OfType<MiForm>().FirstOrDefault();// Busca en la coleccion del formulario
-            //si el formularion/ instancia no existe
+            formulario = panelContenido.Controls.OfType<MiForm>().FirstOrDefault();
+
             if (formulario == null)
             {
                 formulario = new MiForm();
@@ -31,76 +35,126 @@ namespace CONASIS.PDL
                 formulario.Dock = DockStyle.Fill;
                 panelContenido.Controls.Add(formulario);
                 panelContenido.Tag = formulario;
+
+                //  Si es frmNAdministrativo, enganchar el evento
+                if (formulario is frmNAdministrativo frmNuevoAdministrativo)
+                {
+                    frmNuevoAdministrativo.AdministrativoAgregado += (s, args) =>
+                    {
+                        // Refresca la grilla
+                        dgvAdm.DataSource = bdl.ListarAdministrativoConPlantel();
+                    };
+                }
+
                 formulario.Show();
                 formulario.BringToFront();
-                //formulario.FormClosed += new FormClosedEventHandler(FormClosed);
             }
             else
+            {
                 formulario.BringToFront();
+            }
+        }
+        private void AbrirFormularioNieto(Form formulario)
+        {
+            // Si ya hay un form abierto en el panel, opcionalmente lo cierras:
+            var abierto = panelContenido.Controls.OfType<Form>().FirstOrDefault();
+            if (abierto != null)
+            {
+                abierto.Close();
+                panelContenido.Controls.Remove(abierto);
+            }
+
+            formulario.TopLevel = false;
+            formulario.FormBorderStyle = FormBorderStyle.None;
+            formulario.Dock = DockStyle.Fill;
+            panelContenido.Controls.Add(formulario);
+            panelContenido.Tag = formulario;
+
+            // Si es frmNDocente engancha el evento como antes
+            if (formulario is frmNAdministrativo frmNuevoAdministrativo)
+            {
+                frmNuevoAdministrativo.AdministrativoAgregado += (s, args) =>
+                {
+                    dgvAdm.DataSource = bdl.ListarAdministrativoConPlantel();
+                };
+            }
+
+            formulario.Show();
+            formulario.BringToFront();
+        }
+       
+
+        private void frmAdministrativo_Load(object sender, EventArgs e)
+        {
+            dgvAdm.RowPostPaint += dgvAdm_RowPostPaint;
+
+            dgvAdm.DataSource = bdl.ListarAdministrativoConPlantel();
+            // Ajusta automáticamente el ancho de cada columna al contenido
+            dgvAdm.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            // CENTRAR ENCABEZADOS DE LA TABLA
+            dgvAdm.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            if (dgvAdm.Columns.Contains("idadm"))
+                dgvAdm.Columns["idadm"].Visible = false;
+
+            // Configuración de columnas 
+            if (dgvAdm.Columns.Contains("cplant"))
+                dgvAdm.Columns["cplant"].HeaderText = "Código Plantel";
+            if (dgvAdm.Columns.Contains("nomplantel"))
+                dgvAdm.Columns["nomplantel"].HeaderText = "Nombre";
+            if (dgvAdm.Columns.Contains("applantel"))
+                dgvAdm.Columns["applantel"].HeaderText = "Apellido Paterno";
+            if (dgvAdm.Columns.Contains("amplantel"))
+                dgvAdm.Columns["amplantel"].HeaderText = "Apellido Materno";
+            if (dgvAdm.Columns.Contains("itemplantel"))
+                dgvAdm.Columns["itemplantel"].HeaderText = "Item";
+            if (dgvAdm.Columns.Contains("rdaplantel"))
+                dgvAdm.Columns["rdaplantel"].HeaderText = "RDA";
+            if (dgvAdm.Columns.Contains("cargoadm"))
+                dgvAdm.Columns["cargoadm"].HeaderText = "Cargo";
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             AbrirFormularioNieto<frmNAdministrativo>();
         }
-        
-        public void mostrarAdmin()
-        {
-            BDL_Administrativo adm = new BDL_Administrativo();
-            dvgAdm.DataSource = adm.mostrarAdministrativo();
-        }
-
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            frmNAdministrativo frm = new frmNAdministrativo();
+           
+        }
+        private void dgvAdm_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            // Dibujar el número de fila en la cabecera
+            var grid = sender as DataGridView;
+            var rowIdx = (e.RowIndex + 1).ToString();
 
-            if(dvgAdm.SelectedRows.Count >0)
+            var centerFormat = new StringFormat()
             {
-                frm.Editar = true;
-                frm.IdPAdm = dvgAdm.CurrentRow.Cells[0].Value.ToString();
-                frm.txtNombre.Text = dvgAdm.CurrentRow.Cells[1].Value.ToString();
-                frm.txtApPaterno.Text = dvgAdm.CurrentRow.Cells[2].Value.ToString();
-                frm.txtMaterno.Text = dvgAdm.CurrentRow.Cells[3].Value.ToString();
-                frm.cbxGenero.Text = dvgAdm.CurrentRow.Cells[4].Value.ToString();
-                frm.txtCarnet.Text = dvgAdm.CurrentRow.Cells[5].Value.ToString();
-                frm.cbxExtension.Text = dvgAdm.CurrentRow.Cells[6].Value.ToString();
-                frm.txtTelefono.Text = dvgAdm.CurrentRow.Cells[7].Value.ToString();
-                frm.dtpFechaNac.Text = dvgAdm.CurrentRow.Cells[8].Value.ToString();
-                frm.txtDierccion.Text = dvgAdm.CurrentRow.Cells[9].Value.ToString();
-                frm.txtEspecialidad.Text = dvgAdm.CurrentRow.Cells[10].Value.ToString();
-                frm.txtItem.Text = dvgAdm.CurrentRow.Cells[11].Value.ToString();
-                frm.txtRda.Text = dvgAdm.CurrentRow.Cells[12].Value.ToString();
-                frm.txtCargo.Text = dvgAdm.CurrentRow.Cells[13].Value.ToString();
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
 
+            var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+
+            e.Graphics.DrawString(rowIdx, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
+        }
+
+        private void btnEditar_Click_1(object sender, EventArgs e)
+        {
+            if (dgvAdm.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un administrativo para editar.");
+                return;
             }
+           
+            // Asumiendo que en el DataGridView tienes una columna idadministrativo
+            int idAdministrativo = Convert.ToInt32(dgvAdm.CurrentRow.Cells["idadm"].Value);
+            var frm = new frmNAdministrativo(idAdministrativo);
+
+            frm.AdministrativoAgregado += (s, args) =>
+            {
+                dgvAdm.DataSource = bdl.ListarAdministrativoConPlantel(); // refrescar la grilla
+            };
+            AbrirFormularioNieto(frm);
         }
-
-        
-        public void AccionesTabla()
-        {
-            dvgAdm.Columns[0].Width = 100;
-            dvgAdm.Columns[1].Width = 100;
-            dvgAdm.Columns[2].Width = 100;
-            dvgAdm.Columns[3].Width = 100;
-            dvgAdm.Columns[4].Width = 0;
-            dvgAdm.Columns[5].Width = 0;
-            dvgAdm.Columns[6].Width = 0;
-            dvgAdm.Columns[7].Width = 0;
-            dvgAdm.Columns[8].Width = 0;
-            dvgAdm.Columns[9].Width = 0;
-            dvgAdm.Columns[10].Width = 0;
-            dvgAdm.Columns[11].Width = 100;
-            dvgAdm.Columns[12].Width = 100;
-
-            dvgAdm.ClearSelection();
-
-        }
-
-        private void frmAdministrativo_Load(object sender, EventArgs e)
-        {
-            mostrarAdmin(); 
-            AccionesTabla();
-        }
-
     }
 }

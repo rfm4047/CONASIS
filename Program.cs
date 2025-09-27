@@ -17,7 +17,7 @@ namespace CONASIS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new frmPrincipal());
-            Application.Run(new  PDL.frmPrincipal());
+            Application.Run(new  CONASIS.PDL.frmPrincipal());
         }
     }
 }

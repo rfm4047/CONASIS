@@ -86,7 +86,7 @@
             // 
             // panelBotones
             // 
-            this.panelBotones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(199)))), ((int)(((byte)(193)))));
+            this.panelBotones.BackColor = System.Drawing.Color.MediumAquamarine;
             this.panelBotones.Controls.Add(this.btnEditar);
             this.panelBotones.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelBotones.Location = new System.Drawing.Point(796, 0);

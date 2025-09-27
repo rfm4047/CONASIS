@@ -66,7 +66,7 @@ namespace CONASIS.SEGURIDAD
             txtuser.Clear();
             lblMessageError.Visible = false;
             this.Show();
-           // txtuser.Focus();
+            txtuser.Focus();
         }
         private void txtuser_Enter(object sender, EventArgs e)
         {
