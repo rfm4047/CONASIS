@@ -42,5 +42,15 @@ namespace CONASIS.BDL
         {
             return dalHorario.Buscar(idhorarioadm);
         }
+        public DataTable MostrarResumen()
+        {
+            return dalHorario.MostrarResumen();
+        }
+        public void EliminarTodos(int idadm)
+        {
+            dalHorario.EliminarTodos(idadm);
+        }
+
+
     }
 }

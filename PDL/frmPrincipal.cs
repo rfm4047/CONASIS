@@ -189,7 +189,7 @@ namespace CONASIS.PDL
         private void btnReemplazante_Click(object sender, EventArgs e)
         {
             EsconderSubMenu();
-            AbrirFormulario<frmCalendarioEsc>();
+            AbrirFormulario<frmCalendario>();
         }
 
         private void btnRolesUsuarios_Click(object sender, EventArgs e)

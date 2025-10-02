@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CalendarNet">
+      <HintPath>D:\Asistencia2025\Calendar-Net-master\Calendar-Net-master\CalendarNet\bin\Debug\CalendarNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -53,44 +56,60 @@
   <ItemGroup>
     <Compile Include="BDL\Administrativo.cs" />
     <Compile Include="BDL\AdministrativoFull.cs" />
+    <Compile Include="BDL\BDL_Actividad.cs" />
     <Compile Include="BDL\BDL_Administrativo.cs" />
     <Compile Include="BDL\BDL_Asignacion.cs" />
+    <Compile Include="BDL\BDL_CalendarioEscolar.cs" />
     <Compile Include="BDL\BDL_Cargo.cs" />
     <Compile Include="BDL\BDL_Docente.cs" />
+    <Compile Include="BDL\BDL_Gestion.cs" />
     <Compile Include="BDL\BDL_HorarioAdministrativo.cs" />
     <Compile Include="BDL\BDL_JuntaEsc.cs" />
     <Compile Include="BDL\BDL_Motivo.cs" />
+    <Compile Include="BDL\BDL_Periodo.cs" />
     <Compile Include="BDL\BDL_Plantel.cs" />
     <Compile Include="BDL\BDL_Reemplazante.cs" />
     <Compile Include="BDL\BDL_Reemplazo.cs" />
     <Compile Include="BDL\BDL_HorarioGeneral.cs" />
+    <Compile Include="BDL\BDL_TipoDia.cs" />
     <Compile Include="BDL\Docente.cs" />
     <Compile Include="BDL\DocenteFull.cs" />
     <Compile Include="BDL\Institucion.cs" />
     <Compile Include="DAL\Conexion.cs" />
+    <Compile Include="DAL\DAL_Actividad.cs" />
     <Compile Include="DAL\DAL_Administrativo.cs" />
     <Compile Include="DAL\DAL_Asignacion.cs" />
+    <Compile Include="DAL\DAL_CalendarioEscolar.cs" />
     <Compile Include="DAL\DAL_Cargo.cs" />
     <Compile Include="DAL\DAL_Docente.cs" />
+    <Compile Include="DAL\DAL_Gestion.cs" />
     <Compile Include="DAL\DAL_HorarioAdministrativo.cs" />
     <Compile Include="DAL\DAL_HorarioGeneral.cs" />
     <Compile Include="DAL\DAL_Institucion.cs" />
     <Compile Include="DAL\DAL_JuntaEsc.cs" />
     <Compile Include="DAL\DAL_Motivo.cs" />
+    <Compile Include="DAL\DAL_Periodo.cs" />
     <Compile Include="DAL\DAL_Plantel.cs" />
     <Compile Include="DAL\DAL_Reemplazante.cs" />
     <Compile Include="DAL\DAL_Reemplazo.cs" />
-    <Compile Include="PDL\frmCalendario.cs">
+    <Compile Include="DAL\DAL_TipoDia.cs" />
+    <Compile Include="PDL\frmActividades.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PDL\frmAgregarDocente.Designer.cs">
-      <DependentUpon>frmCalendario.cs</DependentUpon>
+    <Compile Include="PDL\frmActividades.Designer.cs">
+      <DependentUpon>frmActividades.cs</DependentUpon>
     </Compile>
     <Compile Include="PDL\frmAdministrativo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PDL\frmAdministrativo.Designer.cs">
       <DependentUpon>frmAdministrativo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PDL\frmCalendario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PDL\frmCalendario.Designer.cs">
+      <DependentUpon>frmCalendario.cs</DependentUpon>
     </Compile>
     <Compile Include="PDL\frmCargoJuntaEscolar.cs">
       <SubType>Form</SubType>
@@ -128,6 +147,12 @@
     <Compile Include="PDL\frmNAdministrativo.Designer.cs">
       <DependentUpon>frmNAdministrativo.cs</DependentUpon>
     </Compile>
+    <Compile Include="PDL\frmNCalendario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PDL\frmNCalendario.Designer.cs">
+      <DependentUpon>frmNCalendario.cs</DependentUpon>
+    </Compile>
     <Compile Include="PDL\frmNDocente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +176,12 @@
     </Compile>
     <Compile Include="PDL\frmNJuntaEscolar.Designer.cs">
       <DependentUpon>frmNJuntaEscolar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PDL\frmPeriodos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PDL\frmPeriodos.Designer.cs">
+      <DependentUpon>frmPeriodos.cs</DependentUpon>
     </Compile>
     <Compile Include="PDL\frmPrincipal.cs">
       <SubType>Form</SubType>
@@ -176,6 +207,12 @@
     <Compile Include="PDL\FrmNUsuarios.Designer.cs">
       <DependentUpon>FrmNUsuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="PDL\frmTipoDiaDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PDL\frmTipoDiaDetalle.Designer.cs">
+      <DependentUpon>frmTipoDiaDetalle.cs</DependentUpon>
+    </Compile>
     <Compile Include="PDL\FrmUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,10 +230,13 @@
     </Compile>
     <Compile Include="SEGURIDAD\UserBussines.cs" />
     <Compile Include="SEGURIDAD\UserData.cs" />
+    <EmbeddedResource Include="PDL\frmActividades.resx">
+      <DependentUpon>frmActividades.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PDL\frmAdministrativo.resx">
       <DependentUpon>frmAdministrativo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PDL\frmAgregarDocente.resx">
+    <EmbeddedResource Include="PDL\frmCalendario.resx">
       <DependentUpon>frmCalendario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PDL\frmCargoJuntaEscolar.resx">
@@ -217,6 +257,9 @@
     <EmbeddedResource Include="PDL\frmNAdministrativo.resx">
       <DependentUpon>frmNAdministrativo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PDL\frmNCalendario.resx">
+      <DependentUpon>frmNCalendario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PDL\frmNDocente.resx">
       <DependentUpon>frmNDocente.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,6 +272,9 @@
     <EmbeddedResource Include="PDL\frmNJuntaEscolar.resx">
       <DependentUpon>frmNJuntaEscolar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PDL\frmPeriodos.resx">
+      <DependentUpon>frmPeriodos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PDL\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -240,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PDL\FrmNUsuarios.resx">
       <DependentUpon>FrmNUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PDL\frmTipoDiaDetalle.resx">
+      <DependentUpon>frmTipoDiaDetalle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PDL\FrmUsuario.resx">
       <DependentUpon>FrmUsuario.cs</DependentUpon>
@@ -357,6 +406,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\d.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aaa.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" Condition="Exists('packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" />

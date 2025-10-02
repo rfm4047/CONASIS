@@ -29,12 +29,16 @@
         private void InitializeComponent()
         {
             this.panelcontenidohorario = new System.Windows.Forms.Panel();
+            this.comboNombre = new System.Windows.Forms.ComboBox();
+            this.pbCheck = new System.Windows.Forms.PictureBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.lblHorario = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
             this.tabHorario = new System.Windows.Forms.TabControl();
             this.tabFijo = new System.Windows.Forms.TabPage();
+            this.numMartesTolerancia = new System.Windows.Forms.NumericUpDown();
+            this.numLunesTolerancia = new System.Windows.Forms.NumericUpDown();
+            this.lbltoleranciaF = new System.Windows.Forms.Label();
             this.chbxDomingo = new System.Windows.Forms.CheckBox();
             this.chbxSabado = new System.Windows.Forms.CheckBox();
             this.chbxViernes = new System.Windows.Forms.CheckBox();
@@ -96,37 +100,60 @@
             this.lblDiaVariable = new System.Windows.Forms.Label();
             this.dgvVariable = new System.Windows.Forms.DataGridView();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.dtTDomingo = new System.Windows.Forms.DateTimePicker();
-            this.dtTSabado = new System.Windows.Forms.DateTimePicker();
-            this.dtTViernes = new System.Windows.Forms.DateTimePicker();
-            this.dtTJueves = new System.Windows.Forms.DateTimePicker();
-            this.dtTMiercoles = new System.Windows.Forms.DateTimePicker();
-            this.dtTMartes = new System.Windows.Forms.DateTimePicker();
-            this.dtTLunes = new System.Windows.Forms.DateTimePicker();
-            this.lbltoleranciaF = new System.Windows.Forms.Label();
-            this.pbCheck = new System.Windows.Forms.PictureBox();
+            this.numMiercolesTolerancia = new System.Windows.Forms.NumericUpDown();
+            this.numJuevesTolerancia = new System.Windows.Forms.NumericUpDown();
+            this.numViernesTolerancia = new System.Windows.Forms.NumericUpDown();
+            this.numSabadoTolerancia = new System.Windows.Forms.NumericUpDown();
+            this.numDomingoTolerancia = new System.Windows.Forms.NumericUpDown();
             this.panelcontenidohorario.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCheck)).BeginInit();
             this.tabHorario.SuspendLayout();
             this.tabFijo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMartesTolerancia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numLunesTolerancia)).BeginInit();
             this.tabVariable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVariable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCheck)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMiercolesTolerancia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numJuevesTolerancia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numViernesTolerancia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSabadoTolerancia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDomingoTolerancia)).BeginInit();
             this.SuspendLayout();
             // 
             // panelcontenidohorario
             // 
             this.panelcontenidohorario.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panelcontenidohorario.Controls.Add(this.comboNombre);
             this.panelcontenidohorario.Controls.Add(this.pbCheck);
             this.panelcontenidohorario.Controls.Add(this.btnCancelar);
             this.panelcontenidohorario.Controls.Add(this.btnAceptar);
             this.panelcontenidohorario.Controls.Add(this.lblHorario);
-            this.panelcontenidohorario.Controls.Add(this.txtNombre);
             this.panelcontenidohorario.Controls.Add(this.tabHorario);
             this.panelcontenidohorario.Controls.Add(this.lblNombre);
             this.panelcontenidohorario.Location = new System.Drawing.Point(1, 1);
             this.panelcontenidohorario.Name = "panelcontenidohorario";
             this.panelcontenidohorario.Size = new System.Drawing.Size(822, 561);
             this.panelcontenidohorario.TabIndex = 1;
+            // 
+            // comboNombre
+            // 
+            this.comboNombre.FormattingEnabled = true;
+            this.comboNombre.Location = new System.Drawing.Point(113, 67);
+            this.comboNombre.Name = "comboNombre";
+            this.comboNombre.Size = new System.Drawing.Size(317, 21);
+            this.comboNombre.TabIndex = 295;
+            this.comboNombre.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboNombre_KeyUp);
+            this.comboNombre.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.comboNombre_PreviewKeyDown);
+            // 
+            // pbCheck
+            // 
+            this.pbCheck.Image = global::CONASIS.Properties.Resources.check;
+            this.pbCheck.Location = new System.Drawing.Point(436, 70);
+            this.pbCheck.Name = "pbCheck";
+            this.pbCheck.Size = new System.Drawing.Size(16, 18);
+            this.pbCheck.TabIndex = 294;
+            this.pbCheck.TabStop = false;
+            this.pbCheck.Visible = false;
             // 
             // btnCancelar
             // 
@@ -138,6 +165,7 @@
             this.btnCancelar.TabIndex = 293;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
@@ -149,6 +177,7 @@
             this.btnAceptar.TabIndex = 292;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // lblHorario
             // 
@@ -165,14 +194,6 @@
             this.lblHorario.Text = "Horario Escolar";
             this.lblHorario.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtNombre
-            // 
-            this.txtNombre.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(124, 62);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(332, 23);
-            this.txtNombre.TabIndex = 285;
-            // 
             // tabHorario
             // 
             this.tabHorario.Controls.Add(this.tabFijo);
@@ -186,14 +207,14 @@
             // 
             // tabFijo
             // 
+            this.tabFijo.Controls.Add(this.numDomingoTolerancia);
+            this.tabFijo.Controls.Add(this.numSabadoTolerancia);
+            this.tabFijo.Controls.Add(this.numViernesTolerancia);
+            this.tabFijo.Controls.Add(this.numJuevesTolerancia);
+            this.tabFijo.Controls.Add(this.numMiercolesTolerancia);
+            this.tabFijo.Controls.Add(this.numMartesTolerancia);
+            this.tabFijo.Controls.Add(this.numLunesTolerancia);
             this.tabFijo.Controls.Add(this.lbltoleranciaF);
-            this.tabFijo.Controls.Add(this.dtTDomingo);
-            this.tabFijo.Controls.Add(this.dtTSabado);
-            this.tabFijo.Controls.Add(this.dtTViernes);
-            this.tabFijo.Controls.Add(this.dtTJueves);
-            this.tabFijo.Controls.Add(this.dtTMiercoles);
-            this.tabFijo.Controls.Add(this.dtTMartes);
-            this.tabFijo.Controls.Add(this.dtTLunes);
             this.tabFijo.Controls.Add(this.chbxDomingo);
             this.tabFijo.Controls.Add(this.chbxSabado);
             this.tabFijo.Controls.Add(this.chbxViernes);
@@ -245,103 +266,128 @@
             this.tabFijo.Text = "Fijo";
             this.tabFijo.UseVisualStyleBackColor = true;
             // 
+            // numMartesTolerancia
+            // 
+            this.numMartesTolerancia.Location = new System.Drawing.Point(161, 107);
+            this.numMartesTolerancia.Name = "numMartesTolerancia";
+            this.numMartesTolerancia.Size = new System.Drawing.Size(35, 26);
+            this.numMartesTolerancia.TabIndex = 357;
+            // 
+            // numLunesTolerancia
+            // 
+            this.numLunesTolerancia.Location = new System.Drawing.Point(161, 69);
+            this.numLunesTolerancia.Name = "numLunesTolerancia";
+            this.numLunesTolerancia.Size = new System.Drawing.Size(35, 26);
+            this.numLunesTolerancia.TabIndex = 296;
+            // 
+            // lbltoleranciaF
+            // 
+            this.lbltoleranciaF.AutoSize = true;
+            this.lbltoleranciaF.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltoleranciaF.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbltoleranciaF.Location = new System.Drawing.Point(139, 36);
+            this.lbltoleranciaF.Name = "lbltoleranciaF";
+            this.lbltoleranciaF.Size = new System.Drawing.Size(86, 18);
+            this.lbltoleranciaF.TabIndex = 356;
+            this.lbltoleranciaF.Text = "Tolerancia";
+            // 
             // chbxDomingo
             // 
             this.chbxDomingo.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chbxDomingo.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbxDomingo.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.chbxDomingo.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxDomingo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.chbxDomingo.ForeColor = System.Drawing.Color.Black;
             this.chbxDomingo.Location = new System.Drawing.Point(32, 309);
             this.chbxDomingo.Name = "chbxDomingo";
             this.chbxDomingo.Size = new System.Drawing.Size(76, 27);
             this.chbxDomingo.TabIndex = 348;
             this.chbxDomingo.Text = "Domingo";
             this.chbxDomingo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chbxDomingo.UseVisualStyleBackColor = false;
+            this.chbxDomingo.UseVisualStyleBackColor = true;
             // 
             // chbxSabado
             // 
             this.chbxSabado.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chbxSabado.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbxSabado.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.chbxSabado.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxSabado.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.chbxSabado.ForeColor = System.Drawing.Color.Black;
             this.chbxSabado.Location = new System.Drawing.Point(32, 268);
             this.chbxSabado.Name = "chbxSabado";
             this.chbxSabado.Size = new System.Drawing.Size(76, 27);
             this.chbxSabado.TabIndex = 347;
             this.chbxSabado.Text = "Sábado";
             this.chbxSabado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chbxSabado.UseVisualStyleBackColor = false;
+            this.chbxSabado.UseVisualStyleBackColor = true;
             // 
             // chbxViernes
             // 
             this.chbxViernes.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chbxViernes.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbxViernes.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.chbxViernes.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxViernes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.chbxViernes.ForeColor = System.Drawing.Color.Black;
             this.chbxViernes.Location = new System.Drawing.Point(32, 225);
             this.chbxViernes.Name = "chbxViernes";
             this.chbxViernes.Size = new System.Drawing.Size(76, 27);
             this.chbxViernes.TabIndex = 346;
             this.chbxViernes.Text = "Viernes";
             this.chbxViernes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chbxViernes.UseVisualStyleBackColor = false;
+            this.chbxViernes.UseVisualStyleBackColor = true;
             // 
             // chbxJueves
             // 
             this.chbxJueves.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chbxJueves.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbxJueves.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.chbxJueves.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxJueves.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.chbxJueves.ForeColor = System.Drawing.Color.Black;
             this.chbxJueves.Location = new System.Drawing.Point(32, 186);
             this.chbxJueves.Name = "chbxJueves";
             this.chbxJueves.Size = new System.Drawing.Size(76, 27);
             this.chbxJueves.TabIndex = 345;
             this.chbxJueves.Text = "Jueves";
             this.chbxJueves.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chbxJueves.UseVisualStyleBackColor = false;
+            this.chbxJueves.UseVisualStyleBackColor = true;
             // 
             // chbxMiercoles
             // 
             this.chbxMiercoles.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chbxMiercoles.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbxMiercoles.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.chbxMiercoles.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxMiercoles.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.chbxMiercoles.ForeColor = System.Drawing.Color.Black;
             this.chbxMiercoles.Location = new System.Drawing.Point(32, 146);
             this.chbxMiercoles.Name = "chbxMiercoles";
             this.chbxMiercoles.Size = new System.Drawing.Size(76, 27);
             this.chbxMiercoles.TabIndex = 344;
             this.chbxMiercoles.Text = "Miercoles";
             this.chbxMiercoles.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chbxMiercoles.UseVisualStyleBackColor = false;
+            this.chbxMiercoles.UseVisualStyleBackColor = true;
             // 
             // chbxMartes
             // 
             this.chbxMartes.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chbxMartes.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbxMartes.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.chbxMartes.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxMartes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.chbxMartes.ForeColor = System.Drawing.Color.Black;
             this.chbxMartes.Location = new System.Drawing.Point(32, 106);
             this.chbxMartes.Name = "chbxMartes";
             this.chbxMartes.Size = new System.Drawing.Size(76, 27);
             this.chbxMartes.TabIndex = 343;
             this.chbxMartes.Text = "Martes";
             this.chbxMartes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chbxMartes.UseVisualStyleBackColor = false;
+            this.chbxMartes.UseVisualStyleBackColor = true;
             // 
             // chbxLunes
             // 
             this.chbxLunes.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chbxLunes.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbxLunes.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.chbxLunes.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxLunes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.chbxLunes.ForeColor = System.Drawing.Color.Black;
             this.chbxLunes.Location = new System.Drawing.Point(32, 64);
             this.chbxLunes.Name = "chbxLunes";
             this.chbxLunes.Size = new System.Drawing.Size(76, 27);
             this.chbxLunes.TabIndex = 342;
             this.chbxLunes.Text = "Lunes";
             this.chbxLunes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chbxLunes.UseVisualStyleBackColor = false;
+            this.chbxLunes.UseVisualStyleBackColor = true;
             // 
             // dateTimeFDomingo
             // 
@@ -865,7 +911,6 @@
             "Historia",
             "Ingles",
             "Física",
-            "Quimica",
             "Matemáticas",
             "Química",
             "Artes Plásticas",
@@ -981,102 +1026,40 @@
             this.lblNombre.TabIndex = 284;
             this.lblNombre.Text = "Nombre";
             // 
-            // dtTDomingo
+            // numMiercolesTolerancia
             // 
-            this.dtTDomingo.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtTDomingo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtTDomingo.Location = new System.Drawing.Point(142, 314);
-            this.dtTDomingo.Name = "dtTDomingo";
-            this.dtTDomingo.ShowUpDown = true;
-            this.dtTDomingo.Size = new System.Drawing.Size(79, 22);
-            this.dtTDomingo.TabIndex = 355;
-            this.dtTDomingo.Value = new System.DateTime(2025, 9, 18, 8, 0, 0, 0);
+            this.numMiercolesTolerancia.Location = new System.Drawing.Point(161, 148);
+            this.numMiercolesTolerancia.Name = "numMiercolesTolerancia";
+            this.numMiercolesTolerancia.Size = new System.Drawing.Size(35, 26);
+            this.numMiercolesTolerancia.TabIndex = 358;
             // 
-            // dtTSabado
+            // numJuevesTolerancia
             // 
-            this.dtTSabado.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtTSabado.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtTSabado.Location = new System.Drawing.Point(142, 273);
-            this.dtTSabado.Name = "dtTSabado";
-            this.dtTSabado.ShowUpDown = true;
-            this.dtTSabado.Size = new System.Drawing.Size(79, 22);
-            this.dtTSabado.TabIndex = 354;
-            this.dtTSabado.Value = new System.DateTime(2025, 9, 18, 8, 0, 0, 0);
+            this.numJuevesTolerancia.Location = new System.Drawing.Point(161, 186);
+            this.numJuevesTolerancia.Name = "numJuevesTolerancia";
+            this.numJuevesTolerancia.Size = new System.Drawing.Size(35, 26);
+            this.numJuevesTolerancia.TabIndex = 359;
             // 
-            // dtTViernes
+            // numViernesTolerancia
             // 
-            this.dtTViernes.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtTViernes.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtTViernes.Location = new System.Drawing.Point(142, 230);
-            this.dtTViernes.Name = "dtTViernes";
-            this.dtTViernes.ShowUpDown = true;
-            this.dtTViernes.Size = new System.Drawing.Size(79, 22);
-            this.dtTViernes.TabIndex = 353;
-            this.dtTViernes.Value = new System.DateTime(2025, 9, 18, 8, 0, 0, 0);
+            this.numViernesTolerancia.Location = new System.Drawing.Point(161, 226);
+            this.numViernesTolerancia.Name = "numViernesTolerancia";
+            this.numViernesTolerancia.Size = new System.Drawing.Size(35, 26);
+            this.numViernesTolerancia.TabIndex = 360;
             // 
-            // dtTJueves
+            // numSabadoTolerancia
             // 
-            this.dtTJueves.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtTJueves.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtTJueves.Location = new System.Drawing.Point(142, 191);
-            this.dtTJueves.Name = "dtTJueves";
-            this.dtTJueves.ShowUpDown = true;
-            this.dtTJueves.Size = new System.Drawing.Size(79, 22);
-            this.dtTJueves.TabIndex = 352;
-            this.dtTJueves.Value = new System.DateTime(2025, 9, 18, 8, 0, 0, 0);
+            this.numSabadoTolerancia.Location = new System.Drawing.Point(161, 268);
+            this.numSabadoTolerancia.Name = "numSabadoTolerancia";
+            this.numSabadoTolerancia.Size = new System.Drawing.Size(35, 26);
+            this.numSabadoTolerancia.TabIndex = 361;
             // 
-            // dtTMiercoles
+            // numDomingoTolerancia
             // 
-            this.dtTMiercoles.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtTMiercoles.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtTMiercoles.Location = new System.Drawing.Point(142, 151);
-            this.dtTMiercoles.Name = "dtTMiercoles";
-            this.dtTMiercoles.ShowUpDown = true;
-            this.dtTMiercoles.Size = new System.Drawing.Size(79, 22);
-            this.dtTMiercoles.TabIndex = 351;
-            this.dtTMiercoles.Value = new System.DateTime(2025, 9, 18, 8, 0, 0, 0);
-            // 
-            // dtTMartes
-            // 
-            this.dtTMartes.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtTMartes.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtTMartes.Location = new System.Drawing.Point(142, 111);
-            this.dtTMartes.Name = "dtTMartes";
-            this.dtTMartes.ShowUpDown = true;
-            this.dtTMartes.Size = new System.Drawing.Size(79, 22);
-            this.dtTMartes.TabIndex = 350;
-            this.dtTMartes.Value = new System.DateTime(2025, 9, 18, 8, 0, 0, 0);
-            // 
-            // dtTLunes
-            // 
-            this.dtTLunes.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtTLunes.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtTLunes.Location = new System.Drawing.Point(142, 69);
-            this.dtTLunes.Name = "dtTLunes";
-            this.dtTLunes.ShowUpDown = true;
-            this.dtTLunes.Size = new System.Drawing.Size(79, 22);
-            this.dtTLunes.TabIndex = 349;
-            this.dtTLunes.Value = new System.DateTime(2025, 9, 18, 8, 0, 0, 0);
-            // 
-            // lbltoleranciaF
-            // 
-            this.lbltoleranciaF.AutoSize = true;
-            this.lbltoleranciaF.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltoleranciaF.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbltoleranciaF.Location = new System.Drawing.Point(139, 36);
-            this.lbltoleranciaF.Name = "lbltoleranciaF";
-            this.lbltoleranciaF.Size = new System.Drawing.Size(86, 18);
-            this.lbltoleranciaF.TabIndex = 356;
-            this.lbltoleranciaF.Text = "Tolerancia";
-            // 
-            // pbCheck
-            // 
-            this.pbCheck.Image = global::CONASIS.Properties.Resources.check;
-            this.pbCheck.Location = new System.Drawing.Point(466, 62);
-            this.pbCheck.Name = "pbCheck";
-            this.pbCheck.Size = new System.Drawing.Size(16, 18);
-            this.pbCheck.TabIndex = 294;
-            this.pbCheck.TabStop = false;
+            this.numDomingoTolerancia.Location = new System.Drawing.Point(161, 309);
+            this.numDomingoTolerancia.Name = "numDomingoTolerancia";
+            this.numDomingoTolerancia.Size = new System.Drawing.Size(35, 26);
+            this.numDomingoTolerancia.TabIndex = 362;
             // 
             // frmNHorario
             // 
@@ -1090,13 +1073,20 @@
             this.Load += new System.EventHandler(this.frmNHorario_Load);
             this.panelcontenidohorario.ResumeLayout(false);
             this.panelcontenidohorario.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCheck)).EndInit();
             this.tabHorario.ResumeLayout(false);
             this.tabFijo.ResumeLayout(false);
             this.tabFijo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMartesTolerancia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numLunesTolerancia)).EndInit();
             this.tabVariable.ResumeLayout(false);
             this.tabVariable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVariable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCheck)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMiercolesTolerancia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numJuevesTolerancia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numViernesTolerancia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSabadoTolerancia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDomingoTolerancia)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1107,7 +1097,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Label lblHorario;
-        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TabControl tabHorario;
         private System.Windows.Forms.TabPage tabFijo;
         private System.Windows.Forms.CheckBox chbxDomingo;
@@ -1173,12 +1162,13 @@
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.PictureBox pbCheck;
         private System.Windows.Forms.Label lbltoleranciaF;
-        private System.Windows.Forms.DateTimePicker dtTDomingo;
-        private System.Windows.Forms.DateTimePicker dtTSabado;
-        private System.Windows.Forms.DateTimePicker dtTViernes;
-        private System.Windows.Forms.DateTimePicker dtTJueves;
-        private System.Windows.Forms.DateTimePicker dtTMiercoles;
-        private System.Windows.Forms.DateTimePicker dtTMartes;
-        private System.Windows.Forms.DateTimePicker dtTLunes;
+        private System.Windows.Forms.ComboBox comboNombre;
+        private System.Windows.Forms.NumericUpDown numLunesTolerancia;
+        private System.Windows.Forms.NumericUpDown numMartesTolerancia;
+        private System.Windows.Forms.NumericUpDown numDomingoTolerancia;
+        private System.Windows.Forms.NumericUpDown numSabadoTolerancia;
+        private System.Windows.Forms.NumericUpDown numViernesTolerancia;
+        private System.Windows.Forms.NumericUpDown numJuevesTolerancia;
+        private System.Windows.Forms.NumericUpDown numMiercolesTolerancia;
     }
 }

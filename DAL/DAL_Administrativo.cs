@@ -195,10 +195,10 @@ namespace CONASIS.DAL
         }
         public DataTable BuscarPorNombre(string nombre)
         {
-            var parametros = new List<SqlParameter>
-    {
-        new SqlParameter("@nombre", nombre)
-    };
+                    var parametros = new List<SqlParameter>
+            {
+                new SqlParameter("@nombre", nombre)
+            };
 
             return conexion.EjecutarSP("sp_Administrativo_BuscarPorNombre", parametros);
         }

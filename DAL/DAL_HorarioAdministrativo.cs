@@ -82,5 +82,24 @@ namespace CONASIS.DAL
 
             return cnx.EjecutarSP("sp_HorarioAdministrativo_CRUD", parametros);
         }
+        public DataTable MostrarResumen()
+        {
+            var parametros = new List<SqlParameter>
+            {
+                new SqlParameter("@Accion", "RESUMEN")
+            };
+            return cnx.EjecutarSP("sp_HorarioAdministrativo_CRUD", parametros);
+        }
+        public void EliminarTodos(int idadm)
+        {
+            var parametros = new List<SqlParameter>
+            {
+                new SqlParameter("@Accion", "ELIMINAR_TODOS"),
+                new SqlParameter("@idadm", idadm)
+            };
+
+            cnx.EjecutarSPNonQuery("sp_HorarioAdministrativo_CRUD", parametros);
+        }
+
     }
 }
