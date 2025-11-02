@@ -93,6 +93,12 @@ namespace CONASIS.DAL
             else
                 return 0;
         }
+        public int ObtenerGestionActiva()
+        {
+            object result = cnx.EjecutarSPScalar("sp_Gestion_ObtenerActiva");
+            return result != null && result != DBNull.Value ? Convert.ToInt32(result) : 0;
+        }
+
 
     }
 }

@@ -50,7 +50,10 @@ namespace CONASIS.BDL
         {
             dalHorario.EliminarTodos(idadm);
         }
-
+        public DataTable MostrarMensual()
+        {
+            return dalHorario.MostrarMensual();
+        }
 
     }
 }

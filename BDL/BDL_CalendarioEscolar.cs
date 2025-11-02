@@ -19,14 +19,14 @@ namespace CONASIS.BDL
             return dal.Mostrar();
         }
 
-        public void Agregar(DateTime fecha, int idtipodia, string motivo, int cod_gestion)
+        public void Agregar(DateTime fecha, int cod_tipodia, string motivo, int cod_gestion)
         {
-            dal.Agregar(fecha, idtipodia, motivo, cod_gestion);
+            dal.Agregar(fecha, cod_tipodia, motivo, cod_gestion);
         }
 
-        public void Modificar(int idcalendario, DateTime fecha, int idtipodia, string motivo)
+        public void Modificar(int idcalendario, DateTime fecha, int cod_tipodia, string motivo)
         {
-            dal.Modificar(idcalendario, fecha, idtipodia, motivo);
+            dal.Modificar(idcalendario, fecha, cod_tipodia, motivo);
         }
 
         public void Eliminar(int idcalendario)
@@ -41,6 +41,20 @@ namespace CONASIS.BDL
         public DataTable MostrarPorGestion(int cod_gestion)
         {
             return dal.MostrarPorGestion(cod_gestion);
+        }
+
+        public void ModificarPorRango(DateTime fechaInicio, DateTime fechaFin, int cod_tipodia, string motivo, int codGestion)
+        {
+            dal.ModificarPorRango(fechaInicio, fechaFin, cod_tipodia, motivo, codGestion);
+        }
+        public void InsertarDesdeTipoDia(int codGestion, int codTipoDia, DateTime fechaInicio, DateTime fechaFin, string motivo)
+        {
+            dal.InsertarDesdeTipoDia(codGestion, codTipoDia, fechaInicio, fechaFin, motivo);
+        }
+
+        public void Eliminarpordia(int codCalendario)
+        {
+            dal.Eliminarpordia(codCalendario);
         }
 
     }

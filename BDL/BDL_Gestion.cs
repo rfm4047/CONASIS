@@ -37,10 +37,10 @@ namespace CONASIS.BDL
         {
             return dal.Buscar(cod_gestion);
         }
-        public int ObtenerUltimaGestion()
-        {
-            return dal.ObtenerUltimaGestion();
-        }
 
+        public int ObtenerGestionActiva()
+        {
+            return dal.ObtenerGestionActiva();
+        }
     }
 }

@@ -100,6 +100,17 @@ namespace CONASIS.DAL
 
             cnx.EjecutarSPNonQuery("sp_HorarioAdministrativo_CRUD", parametros);
         }
+        public DataTable MostrarMensual()
+        {
+            try
+            {
+                return cnx.EjecutarSP("sp_HorarioAdministrativo_Mensual");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener horario administrativo mensual: " + ex.Message);
+            }
+        }
 
     }
 }

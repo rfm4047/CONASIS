@@ -29,9 +29,7 @@ namespace CONASIS.PDL
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
             this.panelContenido = new System.Windows.Forms.Panel();
             this.tabControlCalendario = new System.Windows.Forms.TabControl();
             this.Gestion = new System.Windows.Forms.TabPage();
@@ -51,28 +49,14 @@ namespace CONASIS.PDL
             this.btnsiguiente2 = new System.Windows.Forms.Button();
             this.lbldiasfestivos = new System.Windows.Forms.Label();
             this.dgvtipodia = new System.Windows.Forms.DataGridView();
-            this.Trimestres = new System.Windows.Forms.TabPage();
-            this.btnPeriodos = new System.Windows.Forms.Button();
-            this.lblPeriodos = new System.Windows.Forms.Label();
-            this.btnAnterior2 = new System.Windows.Forms.Button();
-            this.dgvPeriodos = new System.Windows.Forms.DataGridView();
-            this.btnSiguiente3 = new System.Windows.Forms.Button();
-            this.Actividades = new System.Windows.Forms.TabPage();
-            this.btnActividades = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dgvActividades = new System.Windows.Forms.DataGridView();
-            this.btnCancelarAct = new System.Windows.Forms.Button();
             this.Calendario = new System.Windows.Forms.MonthCalendar();
             this.lblDocente = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panelContenido.SuspendLayout();
             this.tabControlCalendario.SuspendLayout();
             this.Gestion.SuspendLayout();
             this.Feriados_Vacaciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvtipodia)).BeginInit();
-            this.Trimestres.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPeriodos)).BeginInit();
-            this.Actividades.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvActividades)).BeginInit();
             this.SuspendLayout();
             // 
             // panelContenido
@@ -83,15 +67,13 @@ namespace CONASIS.PDL
             this.panelContenido.Controls.Add(this.lblDocente);
             this.panelContenido.Location = new System.Drawing.Point(1, 0);
             this.panelContenido.Name = "panelContenido";
-            this.panelContenido.Size = new System.Drawing.Size(801, 511);
+            this.panelContenido.Size = new System.Drawing.Size(802, 511);
             this.panelContenido.TabIndex = 0;
             // 
             // tabControlCalendario
             // 
             this.tabControlCalendario.Controls.Add(this.Gestion);
             this.tabControlCalendario.Controls.Add(this.Feriados_Vacaciones);
-            this.tabControlCalendario.Controls.Add(this.Trimestres);
-            this.tabControlCalendario.Controls.Add(this.Actividades);
             this.tabControlCalendario.Location = new System.Drawing.Point(24, 75);
             this.tabControlCalendario.Name = "tabControlCalendario";
             this.tabControlCalendario.SelectedIndex = 0;
@@ -182,6 +164,7 @@ namespace CONASIS.PDL
             this.txtGestion.Name = "txtGestion";
             this.txtGestion.Size = new System.Drawing.Size(93, 21);
             this.txtGestion.TabIndex = 3;
+            this.txtGestion.TextChanged += new System.EventHandler(this.txtGestion_TextChanged);
             // 
             // txtCodGestion
             // 
@@ -282,154 +265,6 @@ namespace CONASIS.PDL
             this.dgvtipodia.TabIndex = 296;
             this.dgvtipodia.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvtipodia_CellContentClick);
             // 
-            // Trimestres
-            // 
-            this.Trimestres.Controls.Add(this.btnPeriodos);
-            this.Trimestres.Controls.Add(this.lblPeriodos);
-            this.Trimestres.Controls.Add(this.btnAnterior2);
-            this.Trimestres.Controls.Add(this.dgvPeriodos);
-            this.Trimestres.Controls.Add(this.btnSiguiente3);
-            this.Trimestres.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Trimestres.Location = new System.Drawing.Point(4, 22);
-            this.Trimestres.Name = "Trimestres";
-            this.Trimestres.Size = new System.Drawing.Size(743, 232);
-            this.Trimestres.TabIndex = 2;
-            this.Trimestres.Text = "Periodos";
-            this.Trimestres.UseVisualStyleBackColor = true;
-            // 
-            // btnPeriodos
-            // 
-            this.btnPeriodos.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPeriodos.Location = new System.Drawing.Point(30, 189);
-            this.btnPeriodos.Name = "btnPeriodos";
-            this.btnPeriodos.Size = new System.Drawing.Size(84, 28);
-            this.btnPeriodos.TabIndex = 301;
-            this.btnPeriodos.Text = "Periodos";
-            this.btnPeriodos.UseVisualStyleBackColor = true;
-            this.btnPeriodos.Click += new System.EventHandler(this.btnPeriodos_Click);
-            // 
-            // lblPeriodos
-            // 
-            this.lblPeriodos.AutoSize = true;
-            this.lblPeriodos.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPeriodos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblPeriodos.Location = new System.Drawing.Point(27, 18);
-            this.lblPeriodos.Name = "lblPeriodos";
-            this.lblPeriodos.Size = new System.Drawing.Size(71, 18);
-            this.lblPeriodos.TabIndex = 300;
-            this.lblPeriodos.Text = "Periodos";
-            // 
-            // btnAnterior2
-            // 
-            this.btnAnterior2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnterior2.Location = new System.Drawing.Point(480, 188);
-            this.btnAnterior2.Name = "btnAnterior2";
-            this.btnAnterior2.Size = new System.Drawing.Size(84, 28);
-            this.btnAnterior2.TabIndex = 299;
-            this.btnAnterior2.Text = "Anterior";
-            this.btnAnterior2.UseVisualStyleBackColor = true;
-            this.btnAnterior2.Click += new System.EventHandler(this.btnAnterior2_Click);
-            // 
-            // dgvPeriodos
-            // 
-            this.dgvPeriodos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvPeriodos.BackgroundColor = System.Drawing.SystemColors.InactiveBorder;
-            this.dgvPeriodos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPeriodos.Location = new System.Drawing.Point(30, 53);
-            this.dgvPeriodos.Name = "dgvPeriodos";
-            this.dgvPeriodos.Size = new System.Drawing.Size(672, 110);
-            this.dgvPeriodos.TabIndex = 295;
-            this.dgvPeriodos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPeriodos_CellContentClick);
-            // 
-            // btnSiguiente3
-            // 
-            this.btnSiguiente3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSiguiente3.Location = new System.Drawing.Point(613, 188);
-            this.btnSiguiente3.Name = "btnSiguiente3";
-            this.btnSiguiente3.Size = new System.Drawing.Size(89, 28);
-            this.btnSiguiente3.TabIndex = 294;
-            this.btnSiguiente3.Text = "Siguiente";
-            this.btnSiguiente3.UseVisualStyleBackColor = true;
-            this.btnSiguiente3.Click += new System.EventHandler(this.btnSiguiente3_Click);
-            // 
-            // Actividades
-            // 
-            this.Actividades.Controls.Add(this.btnActividades);
-            this.Actividades.Controls.Add(this.label1);
-            this.Actividades.Controls.Add(this.dgvActividades);
-            this.Actividades.Controls.Add(this.btnCancelarAct);
-            this.Actividades.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Actividades.Location = new System.Drawing.Point(4, 22);
-            this.Actividades.Name = "Actividades";
-            this.Actividades.Size = new System.Drawing.Size(743, 232);
-            this.Actividades.TabIndex = 3;
-            this.Actividades.Text = "Actividades";
-            this.Actividades.UseVisualStyleBackColor = true;
-            // 
-            // btnActividades
-            // 
-            this.btnActividades.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActividades.Location = new System.Drawing.Point(32, 184);
-            this.btnActividades.Name = "btnActividades";
-            this.btnActividades.Size = new System.Drawing.Size(108, 28);
-            this.btnActividades.TabIndex = 299;
-            this.btnActividades.Text = "Actividades";
-            this.btnActividades.UseVisualStyleBackColor = true;
-            this.btnActividades.Click += new System.EventHandler(this.btnActividades_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 18);
-            this.label1.TabIndex = 298;
-            this.label1.Text = "Actividades";
-            // 
-            // dgvActividades
-            // 
-            this.dgvActividades.BackgroundColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvActividades.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvActividades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvActividades.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvActividades.Location = new System.Drawing.Point(29, 51);
-            this.dgvActividades.Name = "dgvActividades";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvActividades.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvActividades.Size = new System.Drawing.Size(637, 116);
-            this.dgvActividades.TabIndex = 297;
-            // 
-            // btnCancelarAct
-            // 
-            this.btnCancelarAct.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelarAct.Location = new System.Drawing.Point(621, 184);
-            this.btnCancelarAct.Name = "btnCancelarAct";
-            this.btnCancelarAct.Size = new System.Drawing.Size(89, 28);
-            this.btnCancelarAct.TabIndex = 296;
-            this.btnCancelarAct.Text = "Guardar";
-            this.btnCancelarAct.UseVisualStyleBackColor = true;
-            // 
             // Calendario
             // 
             this.Calendario.CalendarDimensions = new System.Drawing.Size(4, 1);
@@ -440,6 +275,7 @@ namespace CONASIS.PDL
             this.Calendario.ShowToday = false;
             this.Calendario.TabIndex = 302;
             this.Calendario.TrailingForeColor = System.Drawing.Color.PeachPuff;
+            this.Calendario.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.Calendario_DateSelected);
             // 
             // lblDocente
             // 
@@ -474,12 +310,6 @@ namespace CONASIS.PDL
             this.Feriados_Vacaciones.ResumeLayout(false);
             this.Feriados_Vacaciones.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvtipodia)).EndInit();
-            this.Trimestres.ResumeLayout(false);
-            this.Trimestres.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPeriodos)).EndInit();
-            this.Actividades.ResumeLayout(false);
-            this.Actividades.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvActividades)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -503,20 +333,10 @@ namespace CONASIS.PDL
         private System.Windows.Forms.Button btnsiguiente2;
         private System.Windows.Forms.Label lbldiasfestivos;
         private System.Windows.Forms.DataGridView dgvtipodia;
-        private System.Windows.Forms.TabPage Trimestres;
-        private System.Windows.Forms.DataGridView dgvPeriodos;
-        private System.Windows.Forms.Button btnSiguiente3;
-        private System.Windows.Forms.TabPage Actividades;
-        private System.Windows.Forms.DataGridView dgvActividades;
-        private System.Windows.Forms.Button btnCancelarAct;
         private System.Windows.Forms.Label lblDocente;
-        private System.Windows.Forms.MonthCalendar Calendario;
         private System.Windows.Forms.Button btnAnterior;
         private System.Windows.Forms.Button btnTipoDia;
-        private System.Windows.Forms.Button btnAnterior2;
-        private System.Windows.Forms.Label lblPeriodos;
-        private System.Windows.Forms.Button btnPeriodos;
-        private System.Windows.Forms.Button btnActividades;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.MonthCalendar Calendario;
     }
 }

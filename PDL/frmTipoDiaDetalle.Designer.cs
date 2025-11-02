@@ -29,6 +29,11 @@ namespace CONASIS.PDL
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTipoDia = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.txtMotivo = new System.Windows.Forms.TextBox();
@@ -37,15 +42,15 @@ namespace CONASIS.PDL
             this.lblTipo = new System.Windows.Forms.Label();
             this.lblDia = new System.Windows.Forms.Label();
             this.lblFechaInicio = new System.Windows.Forms.Label();
-            this.txtFechaInicio = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblFechaFin = new System.Windows.Forms.Label();
-            this.txtFechaFin = new System.Windows.Forms.TextBox();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.panelBotones = new System.Windows.Forms.Panel();
             this.dgvTipoDia = new System.Windows.Forms.DataGridView();
+            this.dtTipodiaFechaInicio = new System.Windows.Forms.DateTimePicker();
+            this.dtTipodiaFechaFin = new System.Windows.Forms.DateTimePicker();
             this.panelBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTipoDia)).BeginInit();
             this.SuspendLayout();
@@ -77,7 +82,7 @@ namespace CONASIS.PDL
             // txtMotivo
             // 
             this.txtMotivo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMotivo.Location = new System.Drawing.Point(411, 145);
+            this.txtMotivo.Location = new System.Drawing.Point(476, 144);
             this.txtMotivo.Name = "txtMotivo";
             this.txtMotivo.Size = new System.Drawing.Size(121, 20);
             this.txtMotivo.TabIndex = 302;
@@ -85,6 +90,9 @@ namespace CONASIS.PDL
             // cbxtipodia
             // 
             this.cbxtipodia.FormattingEnabled = true;
+            this.cbxtipodia.Items.AddRange(new object[] {
+            "FERIADO",
+            "VACACION"});
             this.cbxtipodia.Location = new System.Drawing.Point(134, 144);
             this.cbxtipodia.Name = "cbxtipodia";
             this.cbxtipodia.Size = new System.Drawing.Size(121, 21);
@@ -114,7 +122,7 @@ namespace CONASIS.PDL
             // 
             this.lblDia.AutoSize = true;
             this.lblDia.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDia.Location = new System.Drawing.Point(305, 142);
+            this.lblDia.Location = new System.Drawing.Point(370, 141);
             this.lblDia.Name = "lblDia";
             this.lblDia.Size = new System.Drawing.Size(33, 20);
             this.lblDia.TabIndex = 306;
@@ -130,20 +138,10 @@ namespace CONASIS.PDL
             this.lblFechaInicio.TabIndex = 308;
             this.lblFechaInicio.Text = "Fecha Inicio";
             // 
-            // txtFechaInicio
-            // 
-            this.txtFechaInicio.Enabled = false;
-            this.txtFechaInicio.Location = new System.Drawing.Point(134, 107);
-            this.txtFechaInicio.Name = "txtFechaInicio";
-            this.txtFechaInicio.ReadOnly = true;
-            this.txtFechaInicio.Size = new System.Drawing.Size(121, 20);
-            this.txtFechaInicio.TabIndex = 307;
-            this.txtFechaInicio.TextChanged += new System.EventHandler(this.txtFecha_TextChanged);
-            // 
             // btnAceptar
             // 
             this.btnAceptar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.Location = new System.Drawing.Point(137, 295);
+            this.btnAceptar.Location = new System.Drawing.Point(131, 369);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(107, 29);
             this.btnAceptar.TabIndex = 309;
@@ -154,7 +152,7 @@ namespace CONASIS.PDL
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(348, 295);
+            this.btnCancelar.Location = new System.Drawing.Point(342, 369);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(107, 29);
             this.btnCancelar.TabIndex = 310;
@@ -166,20 +164,11 @@ namespace CONASIS.PDL
             // 
             this.lblFechaFin.AutoSize = true;
             this.lblFechaFin.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaFin.Location = new System.Drawing.Point(305, 105);
+            this.lblFechaFin.Location = new System.Drawing.Point(370, 104);
             this.lblFechaFin.Name = "lblFechaFin";
             this.lblFechaFin.Size = new System.Drawing.Size(78, 20);
             this.lblFechaFin.TabIndex = 311;
             this.lblFechaFin.Text = "Fecha Fin";
-            // 
-            // txtFechaFin
-            // 
-            this.txtFechaFin.Enabled = false;
-            this.txtFechaFin.Location = new System.Drawing.Point(411, 107);
-            this.txtFechaFin.Name = "txtFechaFin";
-            this.txtFechaFin.ReadOnly = true;
-            this.txtFechaFin.Size = new System.Drawing.Size(121, 20);
-            this.txtFechaFin.TabIndex = 312;
             // 
             // btnEliminar
             // 
@@ -194,6 +183,7 @@ namespace CONASIS.PDL
             this.btnEliminar.TabIndex = 4;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
             // 
             // btnEditar
             // 
@@ -208,6 +198,7 @@ namespace CONASIS.PDL
             this.btnEditar.TabIndex = 3;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // panelBotones
             // 
@@ -215,34 +206,81 @@ namespace CONASIS.PDL
             this.panelBotones.Controls.Add(this.btnEliminar);
             this.panelBotones.Controls.Add(this.btnEditar);
             this.panelBotones.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelBotones.Location = new System.Drawing.Point(562, 0);
+            this.panelBotones.Location = new System.Drawing.Point(635, 0);
             this.panelBotones.Name = "panelBotones";
-            this.panelBotones.Size = new System.Drawing.Size(98, 349);
+            this.panelBotones.Size = new System.Drawing.Size(98, 435);
             this.panelBotones.TabIndex = 314;
             // 
             // dgvTipoDia
             // 
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Blue;
+            this.dgvTipoDia.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvTipoDia.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTipoDia.BackgroundColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTipoDia.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvTipoDia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTipoDia.Location = new System.Drawing.Point(23, 182);
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTipoDia.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvTipoDia.Location = new System.Drawing.Point(36, 183);
             this.dgvTipoDia.Name = "dgvTipoDia";
-            this.dgvTipoDia.Size = new System.Drawing.Size(494, 94);
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTipoDia.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Blue;
+            this.dgvTipoDia.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            this.dgvTipoDia.Size = new System.Drawing.Size(561, 168);
             this.dgvTipoDia.TabIndex = 315;
+            // 
+            // dtTipodiaFechaInicio
+            // 
+            this.dtTipodiaFechaInicio.Location = new System.Drawing.Point(134, 104);
+            this.dtTipodiaFechaInicio.Name = "dtTipodiaFechaInicio";
+            this.dtTipodiaFechaInicio.Size = new System.Drawing.Size(121, 20);
+            this.dtTipodiaFechaInicio.TabIndex = 316;
+            // 
+            // dtTipodiaFechaFin
+            // 
+            this.dtTipodiaFechaFin.Location = new System.Drawing.Point(476, 103);
+            this.dtTipodiaFechaFin.Name = "dtTipodiaFechaFin";
+            this.dtTipodiaFechaFin.Size = new System.Drawing.Size(121, 20);
+            this.dtTipodiaFechaFin.TabIndex = 317;
             // 
             // frmTipoDiaDetalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(660, 349);
+            this.ClientSize = new System.Drawing.Size(733, 435);
+            this.Controls.Add(this.dtTipodiaFechaFin);
+            this.Controls.Add(this.dtTipodiaFechaInicio);
             this.Controls.Add(this.dgvTipoDia);
             this.Controls.Add(this.panelBotones);
-            this.Controls.Add(this.txtFechaFin);
             this.Controls.Add(this.lblFechaFin);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.lblFechaInicio);
-            this.Controls.Add(this.txtFechaInicio);
             this.Controls.Add(this.lblDia);
             this.Controls.Add(this.lblTipo);
             this.Controls.Add(this.lblCodigo);
@@ -271,14 +309,14 @@ namespace CONASIS.PDL
         private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.Label lblDia;
         private System.Windows.Forms.Label lblFechaInicio;
-        private System.Windows.Forms.TextBox txtFechaInicio;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblFechaFin;
-        private System.Windows.Forms.TextBox txtFechaFin;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Panel panelBotones;
         private System.Windows.Forms.DataGridView dgvTipoDia;
+        private System.Windows.Forms.DateTimePicker dtTipodiaFechaInicio;
+        private System.Windows.Forms.DateTimePicker dtTipodiaFechaFin;
     }
 }

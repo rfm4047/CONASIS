@@ -36,6 +36,11 @@
             this.lblHorario = new System.Windows.Forms.Label();
             this.tabHorario = new System.Windows.Forms.TabControl();
             this.tabFijo = new System.Windows.Forms.TabPage();
+            this.numDomingoTolerancia = new System.Windows.Forms.NumericUpDown();
+            this.numSabadoTolerancia = new System.Windows.Forms.NumericUpDown();
+            this.numViernesTolerancia = new System.Windows.Forms.NumericUpDown();
+            this.numJuevesTolerancia = new System.Windows.Forms.NumericUpDown();
+            this.numMiercolesTolerancia = new System.Windows.Forms.NumericUpDown();
             this.numMartesTolerancia = new System.Windows.Forms.NumericUpDown();
             this.numLunesTolerancia = new System.Windows.Forms.NumericUpDown();
             this.lbltoleranciaF = new System.Windows.Forms.Label();
@@ -100,24 +105,19 @@
             this.lblDiaVariable = new System.Windows.Forms.Label();
             this.dgvVariable = new System.Windows.Forms.DataGridView();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.numMiercolesTolerancia = new System.Windows.Forms.NumericUpDown();
-            this.numJuevesTolerancia = new System.Windows.Forms.NumericUpDown();
-            this.numViernesTolerancia = new System.Windows.Forms.NumericUpDown();
-            this.numSabadoTolerancia = new System.Windows.Forms.NumericUpDown();
-            this.numDomingoTolerancia = new System.Windows.Forms.NumericUpDown();
             this.panelcontenidohorario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCheck)).BeginInit();
             this.tabHorario.SuspendLayout();
             this.tabFijo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDomingoTolerancia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSabadoTolerancia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numViernesTolerancia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numJuevesTolerancia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMiercolesTolerancia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMartesTolerancia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLunesTolerancia)).BeginInit();
             this.tabVariable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVariable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMiercolesTolerancia)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numJuevesTolerancia)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numViernesTolerancia)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSabadoTolerancia)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDomingoTolerancia)).BeginInit();
             this.SuspendLayout();
             // 
             // panelcontenidohorario
@@ -266,6 +266,41 @@
             this.tabFijo.Text = "Fijo";
             this.tabFijo.UseVisualStyleBackColor = true;
             // 
+            // numDomingoTolerancia
+            // 
+            this.numDomingoTolerancia.Location = new System.Drawing.Point(161, 309);
+            this.numDomingoTolerancia.Name = "numDomingoTolerancia";
+            this.numDomingoTolerancia.Size = new System.Drawing.Size(35, 26);
+            this.numDomingoTolerancia.TabIndex = 362;
+            // 
+            // numSabadoTolerancia
+            // 
+            this.numSabadoTolerancia.Location = new System.Drawing.Point(161, 268);
+            this.numSabadoTolerancia.Name = "numSabadoTolerancia";
+            this.numSabadoTolerancia.Size = new System.Drawing.Size(35, 26);
+            this.numSabadoTolerancia.TabIndex = 361;
+            // 
+            // numViernesTolerancia
+            // 
+            this.numViernesTolerancia.Location = new System.Drawing.Point(161, 226);
+            this.numViernesTolerancia.Name = "numViernesTolerancia";
+            this.numViernesTolerancia.Size = new System.Drawing.Size(35, 26);
+            this.numViernesTolerancia.TabIndex = 360;
+            // 
+            // numJuevesTolerancia
+            // 
+            this.numJuevesTolerancia.Location = new System.Drawing.Point(161, 186);
+            this.numJuevesTolerancia.Name = "numJuevesTolerancia";
+            this.numJuevesTolerancia.Size = new System.Drawing.Size(35, 26);
+            this.numJuevesTolerancia.TabIndex = 359;
+            // 
+            // numMiercolesTolerancia
+            // 
+            this.numMiercolesTolerancia.Location = new System.Drawing.Point(161, 148);
+            this.numMiercolesTolerancia.Name = "numMiercolesTolerancia";
+            this.numMiercolesTolerancia.Size = new System.Drawing.Size(35, 26);
+            this.numMiercolesTolerancia.TabIndex = 358;
+            // 
             // numMartesTolerancia
             // 
             this.numMartesTolerancia.Location = new System.Drawing.Point(161, 107);
@@ -318,6 +353,7 @@
             this.chbxSabado.Text = "Sábado";
             this.chbxSabado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chbxSabado.UseVisualStyleBackColor = true;
+            this.chbxSabado.CheckedChanged += new System.EventHandler(this.chbxSabado_CheckedChanged);
             // 
             // chbxViernes
             // 
@@ -1026,41 +1062,6 @@
             this.lblNombre.TabIndex = 284;
             this.lblNombre.Text = "Nombre";
             // 
-            // numMiercolesTolerancia
-            // 
-            this.numMiercolesTolerancia.Location = new System.Drawing.Point(161, 148);
-            this.numMiercolesTolerancia.Name = "numMiercolesTolerancia";
-            this.numMiercolesTolerancia.Size = new System.Drawing.Size(35, 26);
-            this.numMiercolesTolerancia.TabIndex = 358;
-            // 
-            // numJuevesTolerancia
-            // 
-            this.numJuevesTolerancia.Location = new System.Drawing.Point(161, 186);
-            this.numJuevesTolerancia.Name = "numJuevesTolerancia";
-            this.numJuevesTolerancia.Size = new System.Drawing.Size(35, 26);
-            this.numJuevesTolerancia.TabIndex = 359;
-            // 
-            // numViernesTolerancia
-            // 
-            this.numViernesTolerancia.Location = new System.Drawing.Point(161, 226);
-            this.numViernesTolerancia.Name = "numViernesTolerancia";
-            this.numViernesTolerancia.Size = new System.Drawing.Size(35, 26);
-            this.numViernesTolerancia.TabIndex = 360;
-            // 
-            // numSabadoTolerancia
-            // 
-            this.numSabadoTolerancia.Location = new System.Drawing.Point(161, 268);
-            this.numSabadoTolerancia.Name = "numSabadoTolerancia";
-            this.numSabadoTolerancia.Size = new System.Drawing.Size(35, 26);
-            this.numSabadoTolerancia.TabIndex = 361;
-            // 
-            // numDomingoTolerancia
-            // 
-            this.numDomingoTolerancia.Location = new System.Drawing.Point(161, 309);
-            this.numDomingoTolerancia.Name = "numDomingoTolerancia";
-            this.numDomingoTolerancia.Size = new System.Drawing.Size(35, 26);
-            this.numDomingoTolerancia.TabIndex = 362;
-            // 
             // frmNHorario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1077,16 +1078,16 @@
             this.tabHorario.ResumeLayout(false);
             this.tabFijo.ResumeLayout(false);
             this.tabFijo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDomingoTolerancia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSabadoTolerancia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numViernesTolerancia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numJuevesTolerancia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMiercolesTolerancia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMartesTolerancia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLunesTolerancia)).EndInit();
             this.tabVariable.ResumeLayout(false);
             this.tabVariable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVariable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMiercolesTolerancia)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numJuevesTolerancia)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numViernesTolerancia)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSabadoTolerancia)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDomingoTolerancia)).EndInit();
             this.ResumeLayout(false);
 
         }

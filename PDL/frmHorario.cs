@@ -43,13 +43,30 @@ namespace CONASIS.PDL
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmNHorario frm = new frmNHorario();
-            frm.Owner = this;   // ✅ ahora la ventana "hija" conoce a su padre
+            // Si ya hay uno dentro, lo quitamos (evita duplicados)
+            foreach (Control c in panelContenido.Controls.OfType<Form>().ToList())
+            {
+                panelContenido.Controls.Remove(c);
+                c.Dispose();
+            }
+
+            var frm = new frmNHorario(this);    // <-- paso explícito del padre
             frm.TopLevel = false;
             frm.FormBorderStyle = FormBorderStyle.None;
             frm.Dock = DockStyle.Fill;
+
             panelContenido.Controls.Add(frm);
             panelContenido.Tag = frm;
+
+            // Cuando se cierre el form hijo: removemos del panel y recargamos
+            frm.FormClosed += (s, ev) =>
+            {
+                if (panelContenido.Controls.Contains(frm)) panelContenido.Controls.Remove(frm);
+                // refrescar el DataGridView
+                this.CargarHorarios();
+                this.Focus();
+            };
+
             frm.Show();
             frm.BringToFront();
 
@@ -63,18 +80,55 @@ namespace CONASIS.PDL
         }
         public void CargarHorarios()
         {
-            BDL_HorarioAdministrativo bdl = new BDL_HorarioAdministrativo();
-            dgvHorario.DataSource = bdl.MostrarResumen();
+            BDL_HorarioDocente bdlDoc = new BDL_HorarioDocente();
+            BDL_HorarioAdministrativo bdlAdm = new BDL_HorarioAdministrativo();
 
-            if (dgvHorario.Columns.Contains("NombreCompleto"))
-                dgvHorario.Columns["NombreCompleto"].HeaderText = "Nombre Completo";
+            DataTable dtDoc = bdlDoc.MostrarMensual();
+            DataTable dtAdm = bdlAdm.MostrarMensual();
 
-            if (dgvHorario.Columns.Contains("TotalHoras"))
-                dgvHorario.Columns["TotalHoras"].HeaderText = "Tiempo Total (hrs)";
+            DataTable dtUnido = new DataTable();
+            dtUnido.Columns.Add("Categoria", typeof(string));
+            dtUnido.Columns.Add("Codigo", typeof(string));
+            dtUnido.Columns.Add("NombreCompleto", typeof(string));
+            dtUnido.Columns.Add("TotalHoras", typeof(decimal));
 
-            if (dgvHorario.Columns.Contains("idAdm"))
-                dgvHorario.Columns["idAdm"].Visible = false;
+            // 🔹 Agregar columnas de Id ocultas
+            dtUnido.Columns.Add("IdPersonal", typeof(int));   // para administrativos
+            dtUnido.Columns.Add("IdDocente", typeof(int));    // para docentes
+
+            foreach (DataRow r in dtAdm.Rows)
+                dtUnido.Rows.Add(
+                    "Administrativo",
+                    r["Codigo"].ToString(),
+                    r["NombreCompleto"].ToString(),
+                    r["TotalHoras"] != DBNull.Value ? Convert.ToDecimal(r["TotalHoras"]) : 0,
+                    r["IdPersonal"],   // <-- aquí asignamos el Id
+                    DBNull.Value       // IdDocente vacío
+                );
+
+            foreach (DataRow r in dtDoc.Rows)
+                dtUnido.Rows.Add(
+                    "Docente",
+                    r["cplant"].ToString(),
+                    r["NombreCompleto"].ToString(),
+                    r["TotalHoras"] != DBNull.Value ? Convert.ToDecimal(r["TotalHoras"]) : 0,
+                     DBNull.Value,      // IdPersonal vacío
+                     r["IdDocente"]     // <-- Id del docente
+                );
+
+            dgvHorario.DataSource = dtUnido;
+
+            dgvHorario.Columns["Categoria"].HeaderText = "Categoría";
+            dgvHorario.Columns["Codigo"].HeaderText = "Código";
+            dgvHorario.Columns["NombreCompleto"].HeaderText = "Nombre Completo";
+            dgvHorario.Columns["TotalHoras"].HeaderText = "Total Horas Mes";
+
+            dgvHorario.Columns["IdPersonal"].Visible = false;
+            dgvHorario.Columns["IdDocente"].Visible = false;
         }
+
+
+
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -99,19 +153,65 @@ namespace CONASIS.PDL
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (dgvHorario.CurrentRow != null)
+            if (dgvHorario.CurrentRow == null)
             {
-                int idAdm = Convert.ToInt32(dgvHorario.CurrentRow.Cells["idAdm"].Value);
+                MessageBox.Show("Seleccione un personal para editar.");
+                return;
+            }
 
-                frmNHorario frm = new frmNHorario();
-                frm.Owner = this;
-                frm.CargarHorarioExistente(idAdm); // 🔹 nuevo método en frmNHorario
-                frm.ShowDialog();
-            }
-            else
+            string categoria = dgvHorario.CurrentRow.Cells["Categoria"].Value.ToString();
+            string codigo = dgvHorario.CurrentRow.Cells["Codigo"].Value.ToString();
+
+            int id = 0;
+            try
             {
-                MessageBox.Show("Seleccione un administrativo para editar.");
+                if (categoria == "Administrativo")
+                {
+                    if (dgvHorario.Columns.Contains("IdPersonal"))
+                        id = Convert.ToInt32(dgvHorario.CurrentRow.Cells["IdPersonal"].Value);
+                    else if (dgvHorario.Columns.Contains("IdAdm"))
+                        id = Convert.ToInt32(dgvHorario.CurrentRow.Cells["IdAdm"].Value);
+                    else
+                    {
+                        MessageBox.Show("No se encontró la columna de Id para administrativos.");
+                        return;
+                    }
+                }
+                else // Docente
+                {
+                    if (dgvHorario.Columns.Contains("IdDocente"))
+                        id = Convert.ToInt32(dgvHorario.CurrentRow.Cells["IdDocente"].Value);
+                    else
+                    {
+                        MessageBox.Show("No se encontró la columna de Id para docentes.");
+                        return;
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener el Id: " + ex.Message);
+                return;
+            }
+
+            // Abrir frmNHorario fijado al formulario padre y cargar los datos
+            frmNHorario frm = new frmNHorario(this); // 🔹 pasar el padre
+            frm.CargarHorarioExistente(id, codigo);   // 🔹 cargar datos automáticamente
+            frm.TopLevel = false;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+
+            // Agregar al panel del padre
+            if (!panelContenido.Controls.Contains(frm))
+            {
+                panelContenido.Controls.Add(frm);
+            }
+            frm.BringToFront();
+            frm.Show();
         }
+
+
+
+
     }
 }

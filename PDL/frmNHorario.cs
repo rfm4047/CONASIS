@@ -147,46 +147,49 @@ namespace CONASIS.PDL
             int idAdm = idAdministrativoSeleccionado.Value;
             BDL_HorarioAdministrativo bdl = new BDL_HorarioAdministrativo();
 
-            // Lista de días y sus controles (puedes ampliarlo hasta domingo)
+            // 🔹 Antes de insertar, eliminamos todos los horarios previos de ese administrativo
+            bdl.EliminarTodos(idAdm);
+
+            // 🔹 Lista de días y sus controles
             var dias = new[]
-                    {
-                new {Chk = chbxLunes, Dia = "Lunes",
-                     Entrada = dateTimeELunes, Salida = dateTimeSLunes,
-                     RecesoIni = dateTimeILunes, RecesoFin = dateTimeFLunes,
-                     Tolerancia =numLunesTolerancia},
+            {
+        new {Chk = chbxLunes, Dia = "Lunes",
+             Entrada = dateTimeELunes, Salida = dateTimeSLunes,
+             RecesoIni = dateTimeILunes, RecesoFin = dateTimeFLunes,
+             Tolerancia = numLunesTolerancia},
 
-                new {Chk =chbxMartes, Dia = "Martes",
-                     Entrada = dateTimeEMartes, Salida =dateTimeSMartes,
-                     RecesoIni = dateTimeIMartes, RecesoFin = dateTimeFMartes,
-                     Tolerancia = numMartesTolerancia},
+        new {Chk = chbxMartes, Dia = "Martes",
+             Entrada = dateTimeEMartes, Salida = dateTimeSMartes,
+             RecesoIni = dateTimeIMartes, RecesoFin = dateTimeFMartes,
+             Tolerancia = numMartesTolerancia},
 
-                new {Chk =chbxMiercoles, Dia = "Miercoles",
-                     Entrada = dateTimeEMiercoles, Salida =dateTimeSMiercoles,
-                     RecesoIni = dateTimeIMiercoles, RecesoFin = dateTimeFMiercoles,
-                     Tolerancia = numMiercolesTolerancia},
+        new {Chk = chbxMiercoles, Dia = "Miercoles",
+             Entrada = dateTimeEMiercoles, Salida = dateTimeSMiercoles,
+             RecesoIni = dateTimeIMiercoles, RecesoFin = dateTimeFMiercoles,
+             Tolerancia = numMiercolesTolerancia},
 
-                new {Chk =chbxJueves, Dia = "Jueves",
-                     Entrada = dateTimeEJueves, Salida =dateTimeSJueves,
-                     RecesoIni = dateTimeIJueves, RecesoFin = dateTimeFJueves,
-                     Tolerancia = numJuevesTolerancia},
+        new {Chk = chbxJueves, Dia = "Jueves",
+             Entrada = dateTimeEJueves, Salida = dateTimeSJueves,
+             RecesoIni = dateTimeIJueves, RecesoFin = dateTimeFJueves,
+             Tolerancia = numJuevesTolerancia},
 
-                new {Chk =chbxViernes, Dia = "Viernes",
-                     Entrada = dateTimeEViernes, Salida =dateTimeSViernes,
-                     RecesoIni = dateTimeIViernes, RecesoFin = dateTimeFViernes,
-                     Tolerancia = numViernesTolerancia},
+        new {Chk = chbxViernes, Dia = "Viernes",
+             Entrada = dateTimeEViernes, Salida = dateTimeSViernes,
+             RecesoIni = dateTimeIViernes, RecesoFin = dateTimeFViernes,
+             Tolerancia = numViernesTolerancia},
 
-                new {Chk =chbxSabado, Dia = "Sabado",
-                     Entrada = dateTimeESabado, Salida =dateTimeSSabado,
-                     RecesoIni = dateTimeISabado, RecesoFin = dateTimeFSabado,
-                     Tolerancia = numSabadoTolerancia},
+        new {Chk = chbxSabado, Dia = "Sabado",
+             Entrada = dateTimeESabado, Salida = dateTimeSSabado,
+             RecesoIni = dateTimeISabado, RecesoFin = dateTimeFSabado,
+             Tolerancia = numSabadoTolerancia},
 
-                new {Chk =chbxDomingo, Dia = "Domingo",
-                     Entrada = dateTimeEDomingo, Salida =dateTimeSDomingo,
-                     RecesoIni = dateTimeIDomingo, RecesoFin = dateTimeFDomingo,
-                     Tolerancia = numDomingoTolerancia},
+        new {Chk = chbxDomingo, Dia = "Domingo",
+             Entrada = dateTimeEDomingo, Salida = dateTimeSDomingo,
+             RecesoIni = dateTimeIDomingo, RecesoFin = dateTimeFDomingo,
+             Tolerancia = numDomingoTolerancia},
+    };
 
-            };
-
+            // 🔹 Recorremos cada día y guardamos solo los seleccionados
             foreach (var d in dias)
             {
                 if (d.Chk.Checked)
@@ -196,53 +199,76 @@ namespace CONASIS.PDL
                     TimeSpan? recIni = d.RecesoIni.Checked ? d.RecesoIni.Value.TimeOfDay : (TimeSpan?)null;
                     TimeSpan? recFin = d.RecesoFin.Checked ? d.RecesoFin.Value.TimeOfDay : (TimeSpan?)null;
 
-                    // tolerancia: usamos solo los minutos del control
                     int toleranciaMinutos = (int)d.Tolerancia.Value;
 
-
-                    // Guardamos en la BD
+                    // Guardar en la base de datos
                     bdl.Agregar(idAdm, d.Dia, entrada, salida, recIni, recFin, toleranciaMinutos);
 
-                    // Calcular horas trabajadas (sin restar receso/tolerancia)
+                    // Cálculo de horas trabajadas (solo informativo)
                     double totalHoras = (salida - entrada).TotalHours;
                     Console.WriteLine($"[{d.Dia}] Total horas = {totalHoras:F2}");
                 }
             }
 
-            MessageBox.Show("Horario guardado correctamente.");
+            MessageBox.Show("Horario guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // 🔹 Refrescar DataGridView del formulario padre (frmHorario)
-            if (this.Owner is frmHorario parent)
-            {
-                parent.CargarHorarios();
-            }
+            // 🔹 Refrescar el DataGridView del formulario padre
+            _padre?.CargarHorarios();
+
+            // 🔹 Limpiar los controles del formulario (opcional)
             LimpiarFormulario();
+
+            // 🔹 Cerrar el formulario hijo (al cerrar se removerá del panel en frmHorario)
+            this.Close();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-        public void CargarHorarioExistente(int idAdm)
-        {
-            idAdministrativoSeleccionado = idAdm;
 
-            BDL_HorarioAdministrativo bdl = new BDL_HorarioAdministrativo();
-            DataTable dt = bdl.Mostrar(); // muestra todos los horarios
+            // Si hay referencia al padre, traer foco.
+            if (_padre != null)
+            {
+                _padre.BringToFront();
+                _padre.Focus();
+            }
+        }
+        public void CargarHorarioExistente(int id, string cplant)
+        {
+            // Detectar tipo de personal
+            bool esDocente = cplant.StartsWith("DOC");
+            bool esAdministrativo = cplant.StartsWith("ADM");
+
+            if (!esDocente && !esAdministrativo)
+                throw new Exception("Código de personal inválido.");
+
+            DataTable dt;
+            if (esDocente)
+            {
+                BDL_HorarioDocente bdlDoc = new BDL_HorarioDocente();
+                dt = bdlDoc.Mostrar(); // Retorna todos los horarios de docentes
+            }
+            else
+            {
+                BDL_HorarioAdministrativo bdlAdm = new BDL_HorarioAdministrativo();
+                dt = bdlAdm.Mostrar(); // Retorna todos los horarios de administrativos
+            }
 
             var horarios = dt.AsEnumerable()
-                             .Where(r => Convert.ToInt32(r["idadm"]) == idAdm);
+                             .Where(r => Convert.ToInt32(esDocente ? r["iddocente"] : r["idadm"]) == id);
 
             foreach (var row in horarios)
             {
                 string dia = row["diaSemana"].ToString();
-                TimeSpan entrada = (TimeSpan)row["horaEntrada"];
-                TimeSpan salida = (TimeSpan)row["horaSalida"];
-                TimeSpan? recIni = row["horaRecesoInicio"] != DBNull.Value ? (TimeSpan)row["horaRecesoInicio"] : (TimeSpan?)null;
-                TimeSpan? recFin = row["horaRecesoFin"] != DBNull.Value ? (TimeSpan)row["horaRecesoFin"] : (TimeSpan?)null;
+                TimeSpan entrada = (TimeSpan)row[esDocente ? "horaInicio" : "horaEntrada"];
+                TimeSpan salida = (TimeSpan)row[esDocente ? "horaFin" : "horaSalida"];
+                TimeSpan? recIni = row[esDocente ? "horaRecesoInicio" : "horaRecesoInicio"] != DBNull.Value
+                                    ? (TimeSpan)row[esDocente ? "horaRecesoInicio" : "horaRecesoInicio"] : (TimeSpan?)null;
+                TimeSpan? recFin = row[esDocente ? "horaRecesoFin" : "horaRecesoFin"] != DBNull.Value
+                                    ? (TimeSpan)row[esDocente ? "horaRecesoFin" : "horaRecesoFin"] : (TimeSpan?)null;
                 int tolerancia = Convert.ToInt32(row["toleranciaMinutos"]);
 
-                // 🔹 según el día, llenamos los controles
+                // Mapear días a controles
                 switch (dia.ToLower())
                 {
                     case "lunes":
@@ -263,15 +289,70 @@ namespace CONASIS.PDL
                         numMartesTolerancia.Value = tolerancia;
                         break;
 
-                        // 🔹 repetir para Miércoles → Domingo
+                    case "miercoles":
+                        chbxMiercoles.Checked = true;
+                        dateTimeEMiercoles.Value = DateTime.Today.Add(entrada);
+                        dateTimeSMiercoles.Value = DateTime.Today.Add(salida);
+                        if (recIni.HasValue) dateTimeIMiercoles.Value = DateTime.Today.Add(recIni.Value);
+                        if (recFin.HasValue) dateTimeFMiercoles.Value = DateTime.Today.Add(recFin.Value);
+                        numMiercolesTolerancia.Value = tolerancia;
+                        break;
+
+                    case "jueves":
+                        chbxJueves.Checked = true;
+                        dateTimeEJueves.Value = DateTime.Today.Add(entrada);
+                        dateTimeSJueves.Value = DateTime.Today.Add(salida);
+                        if (recIni.HasValue) dateTimeIJueves.Value = DateTime.Today.Add(recIni.Value);
+                        if (recFin.HasValue) dateTimeFJueves.Value = DateTime.Today.Add(recFin.Value);
+                        numJuevesTolerancia.Value = tolerancia;
+                        break;
+
+                    case "viernes":
+                        chbxViernes.Checked = true;
+                        dateTimeEViernes.Value = DateTime.Today.Add(entrada);
+                        dateTimeSViernes.Value = DateTime.Today.Add(salida);
+                        if (recIni.HasValue) dateTimeIViernes.Value = DateTime.Today.Add(recIni.Value);
+                        if (recFin.HasValue) dateTimeFViernes.Value = DateTime.Today.Add(recFin.Value);
+                        numViernesTolerancia.Value = tolerancia;
+                        break;
+
+                    case "sabado":
+                        chbxSabado.Checked = true;
+                        dateTimeESabado.Value = DateTime.Today.Add(entrada);
+                        dateTimeSSabado.Value = DateTime.Today.Add(salida);
+                        if (recIni.HasValue) dateTimeISabado.Value = DateTime.Today.Add(recIni.Value);
+                        if (recFin.HasValue) dateTimeFSabado.Value = DateTime.Today.Add(recFin.Value);
+                        numSabadoTolerancia.Value = tolerancia;
+                        break;
+
+                    case "domingo":
+                        chbxDomingo.Checked = true;
+                        dateTimeEDomingo.Value = DateTime.Today.Add(entrada);
+                        dateTimeSDomingo.Value = DateTime.Today.Add(salida);
+                        if (recIni.HasValue) dateTimeIDomingo.Value = DateTime.Today.Add(recIni.Value);
+                        if (recFin.HasValue) dateTimeFDomingo.Value = DateTime.Today.Add(recFin.Value);
+                        numDomingoTolerancia.Value = tolerancia;
+                        break;
                 }
             }
 
-            // Mostrar check verde porque ya está cargado
+            // Mostrar check verde
             pbCheck.Image = Properties.Resources.check;
             pbCheck.Visible = true;
             tabFijo.Enabled = true;
             tabVariable.Enabled = false;
+        }
+
+
+        private void chbxSabado_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        private frmHorario _padre;
+
+        public frmNHorario(frmHorario padre) : this() // llama al constructor por defecto para InitializeComponent
+        {
+            _padre = padre;
         }
 
     }

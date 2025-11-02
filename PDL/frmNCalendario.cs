@@ -62,15 +62,13 @@ namespace CONASIS.PDL
                 tabControlCalendario.SelectedIndex--;
             }
         }
-
-
         private void CargarFeriados()
         {
             BDL_CalendarioEscolar bdl = new BDL_CalendarioEscolar();
             DataTable dt = bdl.MostrarPorGestion(codGestionActual);
 
             var rows = dt.AsEnumerable()
-                         .Where(r => r.Field<string>("nom_tipodia") != "Hábil")
+                         .Where(r => r.Field<string>("tipo_dia") != "HÁBIL")  // 👈 CAMBIO AQUÍ
                          .OrderBy(r => r.Field<DateTime>("fecha"));
 
             if (rows.Any())
@@ -91,24 +89,19 @@ namespace CONASIS.PDL
                     DateTime fecha = row.Field<DateTime>("fecha");
                     string motivoActual = row.Field<string>("motivo");
 
-                    // Si es consecutivo y con mismo motivo, se agrupa
                     if (fecha == fin.AddDays(1) && motivoActual == motivo)
                     {
                         fin = fecha;
                     }
                     else
                     {
-                        // Agregar rango cerrado
                         dtMostrar.Rows.Add(contador++, inicio.ToString("dd/MM/yyyy"), fin.ToString("dd/MM/yyyy"), motivo);
-
-                        // Reiniciar el rango
                         inicio = fecha;
                         fin = fecha;
                         motivo = motivoActual;
                     }
                 }
 
-                // Agregar el último rango
                 dtMostrar.Rows.Add(contador++, inicio.ToString("dd/MM/yyyy"), fin.ToString("dd/MM/yyyy"), motivo);
 
                 dgvtipodia.DataSource = dtMostrar;
@@ -118,54 +111,24 @@ namespace CONASIS.PDL
                 dgvtipodia.DataSource = null;
             }
 
-            // Ajustes visuales
             dgvtipodia.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvtipodia.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvtipodia.ReadOnly = true;
         }
 
-
-        private void frmNCalendario_Load(object sender, EventArgs e)
-        {
-            BDL_Gestion bdlGestion = new BDL_Gestion();
-           // codGestionActual = bdlGestion.ObtenerUltimaGestion();
-            DataTable dt = bdlGestion.Mostrar();
-
-            if (dt.Rows.Count > 0)
-            {
-                codGestionActual = Convert.ToInt32(dt.Rows[0]["cod_gestion"]);
-                string nombreGestion = dt.Rows[0]["nom_gestion"].ToString();
-                DateTime fechaini = Convert.ToDateTime(dt.Rows[0]["fechaini_gestion"]);
-                DateTime fechafin = Convert.ToDateTime(dt.Rows[0]["fechafin_gestion"]);
-
-                txtCodGestion.Text = codGestionActual.ToString();
-                txtGestion.Text = nombreGestion;
-                dtGestionInicio.Value = fechaini;
-                dtGestionFin.Value = fechafin;
-
-                txtGestion.ReadOnly = true;
-                dtGestionInicio.Enabled = false;
-                dtGestionFin.Enabled = false;
-
-
-                CargarFeriados(); // refresca el grid al abrir
-                CargarPeriodos();
-                CargarActividades();
-            }
-
-        }
-
         private void btnTipoDia_Click(object sender, EventArgs e)
         {
+            BDL_Gestion bdlGestion = new BDL_Gestion();
             DateTime fechaInicio = Calendario.SelectionStart;
             DateTime fechaFin = Calendario.SelectionEnd;
+            codGestionActual = bdlGestion.ObtenerGestionActiva();// 1;//COLOCAR CODIGO DEL COMBO DONDE SE EXTRAE EL cod_gestion
 
-            using (frmTipoDiaDetalle frm = new frmTipoDiaDetalle(fechaInicio, fechaFin, codGestionActual))
+            // ✅ Pasamos la gestión actual creada
+            using (frmTipoDiaDetalle frm = new frmTipoDiaDetalle(fechaInicio, fechaFin, codGestionActual)) 
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     CargarFeriados();
-                    
                 }
             }
         }
@@ -184,35 +147,7 @@ namespace CONASIS.PDL
             {
                 tabControlCalendario.SelectedIndex--;
             }
-        }
-
-        private void btnPeriodos_Click(object sender, EventArgs e)
-        {
-            int gestion = codGestionActual;
-            using (frmPeriodos frm = new frmPeriodos(gestion))
-            {
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    CargarPeriodos();
-                }
-            }
-        }
-        private void CargarPeriodos()
-        {
-            BDL_Periodo bdlPeriodo = new BDL_Periodo();
-            var dt = bdlPeriodo.Mostrar(codGestionActual);
-            dgvPeriodos.DataSource = dt;
-            
-            // Ocultar columnas que no quieres mostrar
-            dgvPeriodos.Columns["cod_periodo"].Visible = false;
-            dgvPeriodos.Columns["cod_gestion"].Visible = false;
-
-            // Cambiar los encabezados de las columnas
-            dgvPeriodos.Columns["tipo"].HeaderText = "Tipo de Periodo";
-            dgvPeriodos.Columns["nombre"].HeaderText = "Nombre del Periodo";
-            dgvPeriodos.Columns["fechaini"].HeaderText = "Fecha Inicio";
-            dgvPeriodos.Columns["fechafin"].HeaderText = "Fecha Fin";
-        }
+        }   
 
         private void dgvtipodia_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -231,41 +166,76 @@ namespace CONASIS.PDL
                 tabControlCalendario.SelectedIndex++;
             }
         }
-
-        private void btnActividades_Click(object sender, EventArgs e)
+       
+        private void RefrescarCalendario()
         {
-            int gestion = codGestionActual;
-            using (frmActividades frm = new frmActividades(gestion))
+            Calendario.RemoveAllBoldedDates();
+            toolTip1.RemoveAll();
+
+            BDL_CalendarioEscolar bdl = new BDL_CalendarioEscolar();
+            DataTable dias = bdl.MostrarPorGestion(codGestionActual);
+
+            foreach (DataRow row in dias.Rows)
             {
-                if (frm.ShowDialog() == DialogResult.OK)
+                DateTime fecha = Convert.ToDateTime(row["fecha"]);
+                string tipo = row["tipo_dia"].ToString();
+                string motivo = row["motivo"].ToString();
+
+                // 🔹 Marcar en negrita
+                Calendario.AddBoldedDate(fecha);
+
+                // 🔹 Tooltip dinámico (usa MouseMove)
+                toolTip1.SetToolTip(Calendario, $"{fecha:dd/MM/yyyy}: {tipo} - {motivo}");
+            }
+
+            Calendario.UpdateBoldedDates();
+        }
+
+        private void txtGestion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void Calendario_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            try
+            {
+                // Obtener la fecha seleccionada
+                DateTime fechaInicio = e.Start;
+                DateTime fechaFin = e.End;
+
+                // Obtener la gestión activa
+                BDL_Gestion bdlGestion = new BDL_Gestion();
+                codGestionActual = bdlGestion.ObtenerGestionActiva();
+
+                if (codGestionActual == 0)
                 {
-                    CargarPeriodos();
+                    MessageBox.Show("No hay gestión activa. Genere o seleccione una primero.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Abrir el formulario Tipo Día con las fechas seleccionadas
+                using (frmTipoDiaDetalle frm = new frmTipoDiaDetalle(fechaInicio, fechaFin, codGestionActual))
+                {
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        // Refrescar datos y calendario
+                        CargarFeriados();
+                        RefrescarCalendario();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir el formulario de Tipo Día: " + ex.Message);
+            }
         }
-        private void CargarActividades()
+
+        private void frmNCalendario_Load(object sender, EventArgs e)
         {
-            BDL_Actividad bdl = new BDL_Actividad();
-            dgvActividades.DataSource = bdl.Mostrar();
-            dgvActividades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            // Cambiar nombres de cabeceras
-            if (dgvActividades.Columns["cod_actividad"] != null)
-                dgvActividades.Columns["cod_actividad"].HeaderText = "Código";
 
-            if (dgvActividades.Columns["nombre"] != null)
-                dgvActividades.Columns["nombre"].HeaderText = "Nombre Actividad";
-
-            if (dgvActividades.Columns["fechaini"] != null)
-                dgvActividades.Columns["fechaini"].HeaderText = "Fecha de Inicio";
-
-            if (dgvActividades.Columns["fechafin"] != null)
-                dgvActividades.Columns["fechafin"].HeaderText = "Fecha de Fin";
-
-            dgvActividades.Columns["cod_gestion"].Visible = false;
-            dgvActividades.Columns["nom_gestion"].Visible = false;
-            dgvActividades.Columns["fechaini_gestion"].Visible = false;
-            dgvActividades.Columns["fechafin_gestion"].Visible = false;
-
+            codGestionActual = new BDL_Gestion().ObtenerGestionActiva();
+            if (codGestionActual > 0)
+                RefrescarCalendario();
         }
     }
 }
